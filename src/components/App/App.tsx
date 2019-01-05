@@ -1,19 +1,31 @@
 import * as React from 'react';
+import { IUser } from 'src/interfaces/IUser';
+import { UserService } from 'src/services/UserService';
 import './App.css';
 
-import logo from '../../logo.svg';
+class App extends React.Component<any, { users: IUser[] }> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      users: [],
+    };
+  }
 
-class App extends React.Component {
+  public componentWillMount(): void {
+    UserService.fetchAll().then((users) => {
+      this.setState({
+        users: [...users],
+      });
+    });
+  }
+
   public render() {
     return (
       <div className='App'>
-        <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h1 className='App-title'>Welcome to LumDirectory</h1>
-        </header>
-        <p className='App-intro'>
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <header className='App-header'>My header</header>
+        <div className='App-body'>
+          There {this.state.users.length ? 'are some users' : 'is no user'}
+        </div>
       </div>
     );
   }
