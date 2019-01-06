@@ -57,16 +57,18 @@ const LinkMail = styled.a`
 class UserCard extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
+    this.state = {
+      currentUser: this.props.infos,
+    };
     this.onCardClick = this.onCardClick.bind(this);
   }
 
   public onCardClick(): void {
-    // tslint:disable-next-line: no-console
-    console.log(this.props.infos);
+    this.props.clickHandler(this.state.currentUser);
   }
 
   public render() {
-    const infos: IUser = this.props.infos;
+    const infos: IUser = this.state.currentUser;
     return (
       <UserCardContainer onClick={this.onCardClick}>
         <BackgroundImage url={infos.largePicture} />

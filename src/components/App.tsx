@@ -6,7 +6,7 @@ import styled, {
   theme,
   ThemeProvider,
 } from 'src/themes/styled-components';
-import UserList from './UserList';
+import UsersDirectory from './UsersDirectory';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -21,8 +21,6 @@ const AppContainer = styled.div`
   max-width: 1100px;
   margin: ${(props) => props.theme.largeMargin} auto;
 `;
-
-const AppContent = styled.div``;
 
 const Loader = styled.div``;
 
@@ -49,14 +47,12 @@ class App extends React.Component<any, { users: IUser[]; loading: boolean }> {
       <ThemeProvider theme={theme}>
         <AppContainer>
           <GlobalStyle />
-          <AppContent>
-            {this.state.users.length ? (
-              <UserList users={[...this.state.users]} />
-            ) : (
-              'No user available'
-            )}
-            {this.state.loading && <Loader>Loading</Loader>}
-          </AppContent>
+          {this.state.users.length ? (
+            <UsersDirectory users={[...this.state.users]} />
+          ) : (
+            'No user available'
+          )}
+          {this.state.loading && <Loader>Loading</Loader>}
         </AppContainer>
       </ThemeProvider>
     );
