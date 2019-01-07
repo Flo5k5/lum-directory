@@ -1,24 +1,32 @@
 import * as React from 'react';
 import styled from 'src/themes/styled-components';
 
-const BUTTONS_TO_SHOW = 7;
-const FlexDiv = styled.div``;
-const ButtonPagination = styled.button``;
+const BUTTONS_TO_SHOW: number = 7;
+const FlexDiv: any = styled.div``;
+const ButtonPagination: any = styled.button``;
 
-class UserPagination extends React.Component<any, any> {
-  constructor(props: any) {
+interface IPropsUserPagination {
+  currentPage: number;
+  usersPerPage: number;
+  maxPage: number;
+  totalUsers: number;
+  changeCurrentPage: (n: number) => void;
+}
+
+class UserPagination extends React.Component<IPropsUserPagination, {}> {
+  constructor(props: IPropsUserPagination) {
     super(props);
     this.clickChangeCurrentPage = this.clickChangeCurrentPage.bind(this);
   }
 
   public clickChangeCurrentPage(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) {
-    this.props.changeCurrentPage(event.currentTarget.value);
+  ): void {
+    this.props.changeCurrentPage(+event.currentTarget.value);
   }
 
-  public render() {
-    const paginationBar = this.renderPaginationBar();
+  public render(): JSX.Element {
+    const paginationBar: JSX.Element[] = this.renderPaginationBar();
     return (
       <FlexDiv>
         <span>
@@ -31,17 +39,17 @@ class UserPagination extends React.Component<any, any> {
     );
   }
 
-  private renderPaginationBar() {
-    return this.caclulatePaginationBarElements().map((element) =>
+  private renderPaginationBar(): JSX.Element[] {
+    return this.caclulatePaginationBarElements().map((element: string) =>
       this.createPaginationButton(element)
     );
   }
 
-  private caclulatePaginationBarElements(): any[] {
-    let paginationBar = [];
-    let restToDisplay = 0;
-    const offsetleft = this.props.currentPage - 1;
-    const offsetRight = this.props.maxPage - this.props.currentPage;
+  private caclulatePaginationBarElements(): string[] {
+    let paginationBar: string[] = [];
+    let restToDisplay: number = 0;
+    const offsetleft: number = this.props.currentPage - 1;
+    const offsetRight: number = this.props.maxPage - this.props.currentPage;
 
     if (offsetleft <= 3 && offsetRight <= 3) {
       restToDisplay =
@@ -49,22 +57,22 @@ class UserPagination extends React.Component<any, any> {
           ? this.props.maxPage
           : BUTTONS_TO_SHOW;
 
-      for (let i = 1; i <= restToDisplay; i++) {
+      for (let i: number = 1; i <= restToDisplay; i++) {
         paginationBar.push(i.toString());
       }
     } else if (offsetleft <= 3) {
-      const tempArray = [];
+      const tempArray: string[] = [];
       // -2 beacause there are two static elements in this bar ('>' and maxPage)
       restToDisplay = BUTTONS_TO_SHOW - 2;
-      for (let i = 1; i <= restToDisplay; i++) {
+      for (let i: number = 1; i <= restToDisplay; i++) {
         tempArray.push(i.toString());
       }
       paginationBar = [...tempArray, '>', this.props.maxPage.toString()];
     } else if (offsetRight <= 3) {
-      const tempArray = [];
+      const tempArray: string[] = [];
       // +2 beacause there are two static elements in this bar (1 and '>')
       restToDisplay = this.props.maxPage - BUTTONS_TO_SHOW + 2;
-      for (let i = this.props.maxPage; i > restToDisplay; i--) {
+      for (let i: number = this.props.maxPage; i > restToDisplay; i--) {
         tempArray.push(i.toString());
       }
       paginationBar = ['1', '<', ...tempArray.reverse()];
@@ -83,7 +91,7 @@ class UserPagination extends React.Component<any, any> {
     return paginationBar;
   }
 
-  private createPaginationButton(value: string) {
+  private createPaginationButton(value: string): JSX.Element {
     switch (value) {
       case this.props.currentPage.toString():
         return (

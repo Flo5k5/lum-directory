@@ -3,6 +3,7 @@ import { ThemedStyledComponentsModule } from 'styled-components';
 
 import IThemeInterface from '../interfaces/IThemeInterface';
 
+// tslint:disable-next-line: typedef
 const {
   default: styled,
   css,

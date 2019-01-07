@@ -1,6 +1,6 @@
 import { IUser, MapApiResponseToUsers } from 'src/interfaces/IUser';
 
-const USERS_API_URL = 'https://randomuser.me/api/?results=1000&seed=lumapps';
+const USERS_API_URL = 'https://randomuser.me/api/?results=5000&seed=lumapps';
 
 export class UserService {
   public static fetchAll = (): Promise<IUser[]> => {

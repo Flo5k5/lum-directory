@@ -9,7 +9,7 @@
 // To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
 // This link also includes instructions on opting out of this behavior.
 
-const isLocalhost = Boolean(
+const isLocalhost: boolean = Boolean(
   window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
     window.location.hostname === '[::1]' ||
@@ -19,10 +19,10 @@ const isLocalhost = Boolean(
     )
 );
 
-export default function register() {
+export default function register(): void {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
-    const publicUrl = new URL(
+    const publicUrl: URL = new URL(
       process.env.PUBLIC_URL!,
       window.location.toString()
     );
@@ -34,7 +34,7 @@ export default function register() {
     }
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      const swUrl: string = `${process.env.PUBLIC_URL}/service-worker.js`;
 
       if (isLocalhost) {
         // This is running on localhost. Lets check if a service worker still exists or not.
@@ -56,14 +56,14 @@ export default function register() {
   }
 }
 
-function registerValidSW(swUrl: string) {
+function registerValidSW(swUrl: string): void {
   navigator.serviceWorker
     .register(swUrl)
-    .then((registration) => {
-      registration.onupdatefound = () => {
-        const installingWorker = registration.installing;
+    .then((registration: ServiceWorkerRegistration) => {
+      registration.onupdatefound = (): void => {
+        const installingWorker: ServiceWorker | null = registration.installing;
         if (installingWorker) {
-          installingWorker.onstatechange = () => {
+          installingWorker.onstatechange = (): void => {
             if (installingWorker.state === 'installed') {
               if (navigator.serviceWorker.controller) {
                 // At this point, the old content will have been purged and
@@ -82,26 +82,28 @@ function registerValidSW(swUrl: string) {
         }
       };
     })
-    .catch((error) => {
+    .catch((error: any) => {
       console.error('Error during service worker registration:', error);
     });
 }
 
-function checkValidServiceWorker(swUrl: string) {
+function checkValidServiceWorker(swUrl: string): void {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl)
-    .then((response) => {
+    .then((response: Response) => {
       // Ensure service worker exists, and that we really are getting a JS file.
       if (
         response.status === 404 ||
         response.headers.get('content-type')!.indexOf('javascript') === -1
       ) {
         // No service worker found. Probably a different app. Reload the page.
-        navigator.serviceWorker.ready.then((registration) => {
-          registration.unregister().then(() => {
-            window.location.reload();
-          });
-        });
+        navigator.serviceWorker.ready.then(
+          (registration: ServiceWorkerRegistration) => {
+            registration.unregister().then(() => {
+              window.location.reload();
+            });
+          }
+        );
       } else {
         // Service worker found. Proceed as normal.
         registerValidSW(swUrl);
@@ -114,10 +116,12 @@ function checkValidServiceWorker(swUrl: string) {
     });
 }
 
-export function unregister() {
+export function unregister(): void {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready.then((registration) => {
-      registration.unregister();
-    });
+    navigator.serviceWorker.ready.then(
+      (registration: ServiceWorkerRegistration) => {
+        registration.unregister();
+      }
+    );
   }
 }

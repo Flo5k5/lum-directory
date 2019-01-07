@@ -7,7 +7,19 @@
   ],
   "rules": {
     "prettier": true,
-    "interface-name": false
+    "interface-name": true,
+    "typedef": [
+      true,
+      "call-signature",
+      "property-declaration",
+      "arrow-call-signature",
+      "parameter",
+      "arrow-parameter",
+      "variable-declaration",
+      "member-variable-declaration",
+      "object-destructuring",
+      "array-destructuring"
+    ]
   },
   "linterOptions": {
     "exclude": [

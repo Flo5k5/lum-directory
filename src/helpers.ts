@@ -1,11 +1,13 @@
 export {};
 
 declare global {
+  // tslint:disable-next-line: interface-name
   interface String {
     capitalizeFirstLetter(): string;
   }
 }
 
+// tslint:disable-next-line: typedef
 String.prototype.capitalizeFirstLetter = function(this: string) {
   if (!this) {
     return this;
