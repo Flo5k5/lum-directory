@@ -1,9 +1,25 @@
 import * as React from 'react';
 import styled from 'src/themes/styled-components';
+import { BiggerBoldText } from './BiggerBoldText';
+import { Button } from './Button';
 
 const BUTTONS_TO_SHOW: number = 7;
-const FlexDiv: any = styled.div``;
-const ButtonPagination: any = styled.button``;
+const FlexDiv: any = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+`;
+
+const UserCountSpan: any = styled.span``;
+const PaginationBar: any = styled.div``;
+const Spacer: any = styled.div``;
+
+const ColoredSpan: any = styled.span`
+  color: lightgray;
+`;
 
 interface IPropsUserPagination {
   currentPage: number;
@@ -29,12 +45,12 @@ class UserPagination extends React.Component<IPropsUserPagination, {}> {
     const paginationBar: JSX.Element[] = this.renderPaginationBar();
     return (
       <FlexDiv>
-        <span>
-          {(this.props.currentPage - 1) * this.props.usersPerPage + 1} -{' '}
-          {this.props.usersPerPage * this.props.currentPage} of{' '}
-          {this.props.totalUsers} users
-        </span>
-        {paginationBar}
+        <UserCountSpan>
+          <BiggerBoldText>{this.props.totalUsers}</BiggerBoldText>{' '}
+          <ColoredSpan>users</ColoredSpan>
+        </UserCountSpan>
+        <PaginationBar>{paginationBar}</PaginationBar>
+        <Spacer>&nbsp;</Spacer>
       </FlexDiv>
     );
   }
@@ -95,51 +111,51 @@ class UserPagination extends React.Component<IPropsUserPagination, {}> {
     switch (value) {
       case this.props.currentPage.toString():
         return (
-          <ButtonPagination key={value} disabled={true}>
+          <Button key={value} disabled={true}>
             {this.props.currentPage}
-          </ButtonPagination>
+          </Button>
         );
 
       case this.props.maxPage.toString():
         return (
-          <ButtonPagination
+          <Button
             key={value}
             disabled={this.props.currentPage >= this.props.maxPage}
             onClick={this.clickChangeCurrentPage}
             value={this.props.maxPage}>
             {this.props.maxPage}
-          </ButtonPagination>
+          </Button>
         );
 
       case '<':
         return (
-          <ButtonPagination
+          <Button
             key={value}
             onClick={this.clickChangeCurrentPage}
             value={+this.props.currentPage - 2}>
             {'<'}
-          </ButtonPagination>
+          </Button>
         );
 
       case '>':
         return (
-          <ButtonPagination
+          <Button
             key={value}
             onClick={this.clickChangeCurrentPage}
             value={+this.props.currentPage + 2}>
             {'>'}
-          </ButtonPagination>
+          </Button>
         );
 
       default:
         return (
-          <ButtonPagination
+          <Button
             key={value}
             disabled={this.props.currentPage === +value}
             onClick={this.clickChangeCurrentPage}
             value={+value}>
             {value}
-          </ButtonPagination>
+          </Button>
         );
     }
   }

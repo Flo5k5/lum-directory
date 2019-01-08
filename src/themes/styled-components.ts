@@ -17,6 +17,8 @@ export const theme: IThemeInterface = {
   borderRadius: '5%',
   cardBackground: '#fefff9',
   fontFamily: 'sans-serif',
+  fontLarge: '22px',
+  fontSmall: '12px',
   largeMargin: '20px',
   mediumFontSize: '13px',
   mediumMargin: '10px',

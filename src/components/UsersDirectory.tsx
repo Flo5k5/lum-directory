@@ -10,11 +10,17 @@ const USERS_PER_PAGE: number = 10;
 export type FILTER_GENDER = 'ALL' | 'MALE' | 'FEMALE';
 export type NAME_FILTER = 'BOTH' | 'FIRST_NAME' | 'LAST_NAME';
 
-const UserListContainer: any = styled.div``;
+const UserListContainer: any = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const UserList: any = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+  padding: 0;
+  max-width: 1300px;
 `;
 
 interface IPropsUsersDirectory {

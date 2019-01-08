@@ -1,72 +1,48 @@
 import * as React from 'react';
 import { IUser } from 'src/interfaces/IUser';
 import styled from 'src/themes/styled-components';
-import fallbackUserPicture from './../assets/fallbackUserPicture.png';
+// import fallbackUserPicture from './../assets/fallbackUserPicture.png';
 
 const UserCardContainer: any = styled.div`
   cursor: pointer;
-  width: 200px;
-  height: 150px;
   box-sizing: border-box;
   overflow-wrap: break-word
-  border-radius: ${
-    // tslint:disable-next-line: typedef
-    (props: any) => props.theme.borderRadius
-  };
-  margin-bottom: ${
-    // tslint:disable-next-line: typedef
-    (props: any) => props.theme.largeMargin
-  };
+  margin: 10px 1%;
   border: none;
-  background-color: ${
-    // tslint:disable-next-line: typedef
-    (props: any) => props.theme.cardBackground
-  };
-  box-shadow: rgba(0, 0, 0, 0.19) 0 0 8px 0;
-
-  &:hover, &:focus {
-    background: white;
-    box-shadow: rgba(0, 0, 0, 0.45) 0px 0px 20px 0px;
-  }
+  background-color: white;
+  box-shadow: rgba(0,0,0,0.2) 0 1px 5px 0px;
+  text-align: center;
+  min-width: 140px;
+  width: 18%;
 `;
 
-const BackgroundImage: any = styled('div')<{ url: string }>`
-  background-image: url(${// tslint:disable-next-line: typedef
-  (props: any) => props.url || fallbackUserPicture});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-color: rgba(255, 255, 255, 0.15);
-  background-blend-mode: overlay;
-  border-radius: ${// tslint:disable-next-line: typedef
-    (props: any) =>
-      props.theme.borderRadius} ${// tslint:disable-next-line: typedef
-    (props: any) => props.theme.borderRadius} 0 0;
-  position: relative;
-  height: 110px;
+const UserImageContainer: any = styled.div`
+  padding: 10px;
+`;
 
-  &:hover,
-  &:focus {
-    background-color: rgba(255, 255, 255, 0);
-  }
+const UserImage: any = styled.img`
+  max-width: 100px;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0px 20px 0px;
 `;
 
 const UserCardContent: any = styled.div`
   padding: ${// tslint:disable-next-line: typedef
   (props: any) => props.theme.smallMargin};
   text-align: center;
-  font-size: ${// tslint:disable-next-line: typedef
-  (props) => props.theme.mediumFontSize};
+  margin: 10px;
 `;
 
 const UserCardName: any = styled.span`
   display: block;
+  font-weight: bold;
+  font-size: ${// tslint:disable-next-line: typedef
+  (props) => props.theme.mediumFontSize};
 `;
 
-const LinkMail: any = styled.a`
-  color: ${// tslint:disable-next-line: typedef
-  (props) => props.theme.secondaryColor};
-  text-decoration: none;
+const UserCardMail: any = styled.span`
+  color: darkgray;
+  font-size: 10px;
 `;
 
 interface IPropsUserCard {
@@ -96,12 +72,15 @@ class UserCard extends React.Component<IPropsUserCard, IStateUserCard> {
     const infos: IUser = this.state.currentUser;
     return (
       <UserCardContainer onClick={this.onCardClick}>
-        <BackgroundImage url={infos.largePicture} />
+        <UserImageContainer>
+          <UserImage src={infos.largePicture} />
+        </UserImageContainer>
+
         <UserCardContent>
           <UserCardName>
             {infos.lastName} {infos.firstName}
           </UserCardName>
-          <LinkMail>{infos.email}</LinkMail>
+          <UserCardMail>{infos.email}</UserCardMail>
         </UserCardContent>
       </UserCardContainer>
     );

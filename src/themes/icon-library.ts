@@ -11,14 +11,24 @@
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+  faCircleNotch,
   faMars,
-  faSpinner,
+  faPlusSquare,
+  faTimes,
   faVenus,
   faVenusMars,
 } from '@fortawesome/free-solid-svg-icons';
 
 export default {
-  init: (): void => library.add(faMars, faSpinner, faVenus, faVenusMars),
+  init: (): void =>
+    library.add(
+      faCircleNotch,
+      faMars,
+      faPlusSquare,
+      faTimes,
+      faVenus,
+      faVenusMars
+    ),
 };
 
 // <FontAwesomeIcon icon={item.icon as any} fixedWidth={true} />

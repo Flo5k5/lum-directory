@@ -3,6 +3,8 @@ export default interface IThemeInterface {
   borderRadius: string;
   cardBackground: string;
   fontFamily: string;
+  fontLarge: string;
+  fontSmall: string;
   largeMargin: string;
   mediumFontSize: string;
   mediumMargin: string;

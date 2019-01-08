@@ -1,11 +1,27 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import styled from 'src/themes/styled-components';
+import { BiggerBoldText } from './BiggerBoldText';
+import { Button } from './Button';
 import { FILTER_GENDER, NAME_FILTER } from './UsersDirectory';
 
-const FlexDiv: any = styled.div``;
-const NameFilterInput: any = styled.input``;
-const Button: any = styled.button``;
+const FlexDiv: any = styled.div`
+  padding: 20px;
+`;
+const NameFilterInput: any = styled.input`
+  height: 35px;
+  box-sizing: border-box;
+  border: 1px solid lightgray;
+  color: lightgray;
+  padding: 0 5px;
+  :focus {
+    outline: none;
+  }
+`;
+const ButtonGroup: any = styled.div`
+  display: inline-block;
+  margin-right: 0 20px;
+`;
 
 interface IPropsUserFilters {
   genderFilter: FILTER_GENDER;
@@ -56,47 +72,53 @@ class UserFilters extends React.Component<IPropsUserFilters, {}> {
   public render(): React.ReactNode {
     return (
       <FlexDiv>
-        <NameFilterInput
-          value={this.props.textFilter}
-          onChange={this.onChangeNameFilterInput}
-        />
-        <Button
-          disabled={this.props.nameFilter === 'BOTH'}
-          onClick={this.onClickNameButtons}
-          value='BOTH'>
-          Both
-        </Button>
-        <Button
-          disabled={this.props.nameFilter === 'FIRST_NAME'}
-          onClick={this.onClickNameButtons}
-          value='FIRST_NAME'>
-          First name
-        </Button>
-        <Button
-          disabled={this.props.nameFilter === 'LAST_NAME'}
-          onClick={this.onClickNameButtons}
-          value='LAST_NAME'>
-          Last name
-        </Button>
-        &nbsp;
-        <Button
-          disabled={this.props.genderFilter === 'ALL'}
-          onClick={this.onClickGenderButtons}
-          value='ALL'>
-          <FontAwesomeIcon icon='venus-mars' />
-        </Button>
-        <Button
-          disabled={this.props.genderFilter === 'FEMALE'}
-          onClick={this.onClickGenderButtons}
-          value='FEMALE'>
-          <FontAwesomeIcon icon='venus' />
-        </Button>
-        <Button
-          disabled={this.props.genderFilter === 'MALE'}
-          onClick={this.onClickGenderButtons}
-          value='MALE'>
-          <FontAwesomeIcon icon='mars' />
-        </Button>
+        <ButtonGroup>
+          <BiggerBoldText>Filters</BiggerBoldText>
+          <Button
+            adaptiveWidth={true}
+            disabled={this.props.nameFilter === 'FIRST_NAME'}
+            onClick={this.onClickNameButtons}
+            value='FIRST_NAME'>
+            First name
+          </Button>
+          <Button
+            adaptiveWidth={true}
+            disabled={this.props.nameFilter === 'LAST_NAME'}
+            onClick={this.onClickNameButtons}
+            value='LAST_NAME'>
+            Last name
+          </Button>
+          <NameFilterInput
+            value={this.props.textFilter}
+            onChange={this.onChangeNameFilterInput}
+          />
+          <Button
+            disabled={this.props.nameFilter === 'BOTH'}
+            onClick={this.onClickNameButtons}
+            value='BOTH'>
+            <FontAwesomeIcon icon='times' />
+          </Button>
+        </ButtonGroup>
+        <ButtonGroup>
+          <Button
+            disabled={this.props.genderFilter === 'ALL'}
+            onClick={this.onClickGenderButtons}
+            value='ALL'>
+            <FontAwesomeIcon icon='venus-mars' />
+          </Button>
+          <Button
+            disabled={this.props.genderFilter === 'FEMALE'}
+            onClick={this.onClickGenderButtons}
+            value='FEMALE'>
+            <FontAwesomeIcon icon='venus' />
+          </Button>
+          <Button
+            disabled={this.props.genderFilter === 'MALE'}
+            onClick={this.onClickGenderButtons}
+            value='MALE'>
+            <FontAwesomeIcon icon='mars' />
+          </Button>
+        </ButtonGroup>
       </FlexDiv>
     );
   }

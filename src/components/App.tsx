@@ -3,6 +3,7 @@ import * as React from 'react';
 import IThemeInterface from 'src/interfaces/IThemeInterface';
 import { IUser } from 'src/interfaces/IUser';
 import { UserService } from 'src/services/UserService';
+import fontAwesome from 'src/themes/icon-library';
 import styled, {
   createGlobalStyle,
   theme,
@@ -11,15 +12,15 @@ import styled, {
 import { GlobalStyleComponent } from 'styled-components';
 import UsersDirectory from './UsersDirectory';
 
+// Load fontAwesome Library
+fontAwesome.init();
+
 const GlobalStyle: GlobalStyleComponent<
   {},
   IThemeInterface
 > = createGlobalStyle`
   html, body, .root {
-    background-color: ${
-      // tslint:disable-next-line: typedef
-      (props: any) => props.theme.backgroundColor
-    };
+    background-color: white;
     font-family: ${
       // tslint:disable-next-line: typedef
       (props: any) => props.theme.fontFamily
@@ -31,18 +32,18 @@ const GlobalStyle: GlobalStyleComponent<
   }
 `;
 
-const AppContainer: any = styled.div`
-  max-width: 1100px;
-  height: 100%;
-  padding: ${// tslint:disable-next-line: typedef
-    (props: any) => props.theme.largeMargin} auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+const AppContainer: any = styled.div``;
 
 const Loader: any = styled.div`
   position: fixed;
+  top: 40%;
+  left: 45%;
+  text-align: center;
+`;
+
+const TextLoading: any = styled.p`
+  font-weight: bold;
+  font-size: 22px;
 `;
 
 interface IStateApp {
@@ -75,23 +76,22 @@ class App extends React.Component<{}, IStateApp> {
   }
 
   public render(): JSX.Element {
+    const isEmptyUserList: boolean =
+      !this.state.users.length && !this.state.loading;
     return (
       <ThemeProvider theme={theme}>
         <AppContainer>
           <GlobalStyle />
-          {this.state.users.length ? (
+          {!!this.state.users.length && (
             <UsersDirectory users={[...this.state.users]} />
-          ) : (
-            <h2>
-              No user available <FontAwesomeIcon icon='spinner' />
-              <FontAwesomeIcon icon='venus-mars' />
-            </h2>
           )}
           {this.state.loading && (
             <Loader>
-              <FontAwesomeIcon icon='spinner' />
+              <FontAwesomeIcon icon='circle-notch' size='3x' spin={true} />
+              <TextLoading>Loading...</TextLoading>
             </Loader>
           )}
+          {isEmptyUserList && <h2>No user available</h2>}
         </AppContainer>
       </ThemeProvider>
     );
