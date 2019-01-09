@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IUser } from 'src/interfaces/IUser';
-import styled from 'src/themes/styled-components';
+import styled from 'src/themes/StyledComponents';
 
 const ModalOverlay: any = styled('div')<{ isActive: boolean }>`
   display: ${// tslint:disable-next-line: typedef
@@ -19,14 +19,23 @@ const ModalOverlay: any = styled('div')<{ isActive: boolean }>`
 
 const Modal: any = styled.div`
   position: relative;
-  background-color: #fefefe;
+  background-color: ${// tslint:disable-next-line: typedef
+  (props: any) => props.theme.colorBackground};
   margin: auto;
   padding: 0;
-  border: 1px solid #888;
+  border: ${// tslint:disable-next-line: typedef
+    (props: any) =>
+      props.theme.borderSize} ${// tslint:disable-next-line: typedef
+    (props: any) => props.theme.borderStyle} #888;
   width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px ${// tslint:disable-next-line: typedef
+      (props: any) => props.theme.gutterLarge} 0 rgba(0, 0, 0, 0.19);
   animation-name: animationTop;
   animation-duration: 0.4s;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 
   @keyframes animationTop {
     from {
@@ -43,23 +52,20 @@ const Modal: any = styled.div`
 const ModalLeft: any = styled.div`
   padding: 2px 16px;
   background-color: #5cb85c;
-  color: white;
+  color: ${// tslint:disable-next-line: typedef
+  (props: any) => props.theme.colorBackground};
 `;
 
 const ModalRight: any = styled.div`
   padding: 2px 16px;
 `;
 
-const ModalFooter: any = styled.div`
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
-`;
-
 const CloseButton: any = styled.span`
-  color: white;
+  color: ${// tslint:disable-next-line: typedef
+  (props: any) => props.theme.colorBackground};
   float: right;
-  font-size: 28px;
+  font-size: ${// tslint:disable-next-line: typedef
+  (props: any) => props.theme.fontLarge};
   font-weight: bold;
 
   &:hover,
@@ -87,17 +93,16 @@ class UserInfosModal extends React.Component<IPropsUserInfosModal, {}> {
       return (
         <ModalOverlay isActive={!!userInfos}>
           <Modal>
+            <CloseButton onClick={this.closeModal}>&times;</CloseButton>
             <ModalLeft>
-              <CloseButton onClick={this.closeModal}>&times;</CloseButton>
-              <h2>My header</h2>
+              {/* <UserImageContainer>
+                <UserImage src={infos.largePicture} />
+              </UserImageContainer> */}
             </ModalLeft>
             <ModalRight>
               <p>{userInfos.email}</p>
               <p>Some other text...</p>
             </ModalRight>
-            <ModalFooter>
-              <h3>Modal Footer</h3>
-            </ModalFooter>
           </Modal>
         </ModalOverlay>
       );

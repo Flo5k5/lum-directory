@@ -1,36 +1,41 @@
 import * as React from 'react';
-import styled from 'src/themes/styled-components';
-import { BiggerBoldText } from './BiggerBoldText';
-import { Button } from './Button';
+import styled from 'src/themes/StyledComponents';
+import { BiggerBoldText } from '../layout/BiggerBoldText';
+import { Button } from '../layout/Button';
 
 const BUTTONS_TO_SHOW: number = 7;
-const FlexDiv: any = styled.div`
+const WrapperDiv: any = styled.div`
+  align-self: stretch;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: ${// tslint:disable-next-line: typedef
+  (props: any) => props.theme.gutterLarge};
 `;
 
-const UserCountSpan: any = styled.span``;
+const UserCountSpan: any = styled.span`
+  display: flex;
+  align-items: center;
+`;
 const PaginationBar: any = styled.div``;
 const Spacer: any = styled.div``;
 
 const ColoredSpan: any = styled.span`
-  color: lightgray;
+  color: ${// tslint:disable-next-line: typedef
+  (props: any) => props.theme.colorFontPrimary};
 `;
 
-interface IPropsUserPagination {
+interface IUserListPaginationProps {
   currentPage: number;
-  usersPerPage: number;
   maxPage: number;
   totalUsers: number;
   changeCurrentPage: (n: number) => void;
 }
 
-class UserPagination extends React.Component<IPropsUserPagination, {}> {
-  constructor(props: IPropsUserPagination) {
+class UserListPagination extends React.Component<IUserListPaginationProps, {}> {
+  constructor(props: IUserListPaginationProps) {
     super(props);
     this.clickChangeCurrentPage = this.clickChangeCurrentPage.bind(this);
   }
@@ -44,14 +49,14 @@ class UserPagination extends React.Component<IPropsUserPagination, {}> {
   public render(): JSX.Element {
     const paginationBar: JSX.Element[] = this.renderPaginationBar();
     return (
-      <FlexDiv>
+      <WrapperDiv>
+        <Spacer>&nbsp;</Spacer>
+        <PaginationBar>{paginationBar}</PaginationBar>
         <UserCountSpan>
           <BiggerBoldText>{this.props.totalUsers}</BiggerBoldText>{' '}
           <ColoredSpan>users</ColoredSpan>
         </UserCountSpan>
-        <PaginationBar>{paginationBar}</PaginationBar>
-        <Spacer>&nbsp;</Spacer>
-      </FlexDiv>
+      </WrapperDiv>
     );
   }
 
@@ -161,4 +166,4 @@ class UserPagination extends React.Component<IPropsUserPagination, {}> {
   }
 }
 
-export default UserPagination;
+export default UserListPagination;

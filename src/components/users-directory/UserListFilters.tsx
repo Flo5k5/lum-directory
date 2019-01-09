@@ -1,29 +1,57 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
-import styled from 'src/themes/styled-components';
-import { BiggerBoldText } from './BiggerBoldText';
-import { Button } from './Button';
-import { FILTER_GENDER, NAME_FILTER } from './UsersDirectory';
+import styled from 'src/themes/StyledComponents';
+import { BiggerBoldText } from '../layout/BiggerBoldText';
+import { Button } from '../layout/Button';
+import { FILTER_GENDER, NAME_FILTER } from './UserList';
 
-const FlexDiv: any = styled.div`
-  padding: 20px;
+const WrapperDiv: any = styled.div`
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: ${// tslint:disable-next-line: typedef
+  (props: any) => props.theme.gutterLarge};
 `;
 const NameFilterInput: any = styled.input`
   height: 35px;
   box-sizing: border-box;
-  border: 1px solid lightgray;
-  color: lightgray;
-  padding: 0 5px;
+  border: ${// tslint:disable-next-line: typedef
+    (props: any) =>
+      props.theme.borderSize} ${// tslint:disable-next-line: typedef
+    (props: any) =>
+      props.theme.borderStyle} ${// tslint:disable-next-line: typedef
+    (props: any) => props.theme.colorFontPrimary};
+  color: ${// tslint:disable-next-line: typedef
+  (props: any) => props.theme.colorFontPrimary};
+  padding: 0 ${// tslint:disable-next-line: typedef
+    (props: any) => props.theme.gutterSmall};
   :focus {
     outline: none;
   }
 `;
-const ButtonGroup: any = styled.div`
+const GroupButton: any = styled.div`
   display: inline-block;
-  margin-right: 0 20px;
+  margin-right: 0 ${// tslint:disable-next-line: typedef
+    (props: any) => props.theme.gutterLarge};
+
+  ${Button}, ${NameFilterInput} {
+    border-left: none;
+  }
+
+  ${Button}:first-child {
+    border-left: ${// tslint:disable-next-line: typedef
+      (props: any) =>
+        props.theme.borderSize} ${// tslint:disable-next-line: typedef
+      (props: any) =>
+        props.theme.borderStyle} ${// tslint:disable-next-line: typedef
+      (props: any) => props.theme.colorFontPrimary};
+  }
 `;
 
-interface IPropsUserFilters {
+interface IUserListFiltersProps {
   genderFilter: FILTER_GENDER;
   nameFilter: NAME_FILTER;
   textFilter: string;
@@ -34,8 +62,8 @@ interface IPropsUserFilters {
   ) => void;
 }
 
-class UserFilters extends React.Component<IPropsUserFilters, {}> {
-  constructor(props: IPropsUserFilters) {
+class UserListFilters extends React.Component<IUserListFiltersProps, {}> {
+  constructor(props: IUserListFiltersProps) {
     super(props);
     this.onChangeNameFilterInput = this.onChangeNameFilterInput.bind(this);
     this.onClickNameButtons = this.onClickNameButtons.bind(this);
@@ -71,9 +99,9 @@ class UserFilters extends React.Component<IPropsUserFilters, {}> {
 
   public render(): React.ReactNode {
     return (
-      <FlexDiv>
-        <ButtonGroup>
-          <BiggerBoldText>Filters</BiggerBoldText>
+      <WrapperDiv>
+        <BiggerBoldText>Filters</BiggerBoldText>
+        <GroupButton>
           <Button
             adaptiveWidth={true}
             disabled={this.props.nameFilter === 'FIRST_NAME'}
@@ -92,36 +120,33 @@ class UserFilters extends React.Component<IPropsUserFilters, {}> {
             value={this.props.textFilter}
             onChange={this.onChangeNameFilterInput}
           />
-          <Button
-            disabled={this.props.nameFilter === 'BOTH'}
-            onClick={this.onClickNameButtons}
-            value='BOTH'>
-            <FontAwesomeIcon icon='times' />
-          </Button>
-        </ButtonGroup>
-        <ButtonGroup>
+        </GroupButton>
+        <GroupButton>
           <Button
             disabled={this.props.genderFilter === 'ALL'}
             onClick={this.onClickGenderButtons}
+            title='All'
             value='ALL'>
             <FontAwesomeIcon icon='venus-mars' />
           </Button>
           <Button
             disabled={this.props.genderFilter === 'FEMALE'}
             onClick={this.onClickGenderButtons}
+            title='Women'
             value='FEMALE'>
             <FontAwesomeIcon icon='venus' />
           </Button>
           <Button
             disabled={this.props.genderFilter === 'MALE'}
             onClick={this.onClickGenderButtons}
+            title='Men'
             value='MALE'>
             <FontAwesomeIcon icon='mars' />
           </Button>
-        </ButtonGroup>
-      </FlexDiv>
+        </GroupButton>
+      </WrapperDiv>
     );
   }
 }
 
-export default UserFilters;
+export default UserListFilters;

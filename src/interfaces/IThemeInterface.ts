@@ -1,14 +1,14 @@
 export default interface IThemeInterface {
-  backgroundColor: string;
-  borderRadius: string;
-  cardBackground: string;
+  borderSize: string;
+  borderStyle: string;
+  colorBackground: string;
   fontFamily: string;
   fontLarge: string;
   fontSmall: string;
-  largeMargin: string;
-  mediumFontSize: string;
-  mediumMargin: string;
-  primaryColor: string;
-  secondaryColor: string;
-  smallMargin: string;
+  gutterLarge: string;
+  colorFontPrimary: string;
+  fontMedium: string;
+  gutterMedium: string;
+  colorFontSecondary: string;
+  gutterSmall: string;
 }

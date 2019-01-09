@@ -2,57 +2,66 @@ import * as React from 'react';
 import { IUser } from 'src/interfaces/IUser';
 import styled from 'styled-components';
 import UserCard from './UserCard';
-import UserFilters from './UserFilters';
 import UserInfosModal from './UserInfosModal';
-import UserPagination from './UserPagination';
+import UserListFilters from './UserListFilters';
+import UserListPagination from './UserListPagination';
 
 const USERS_PER_PAGE: number = 10;
 export type FILTER_GENDER = 'ALL' | 'MALE' | 'FEMALE';
-export type NAME_FILTER = 'BOTH' | 'FIRST_NAME' | 'LAST_NAME';
+export type NAME_FILTER = 'FIRST_NAME' | 'LAST_NAME';
+// export enum EnumFilter {
+//   FILTER_GENDER,
+//   NAME_FILTER,
+//   string,
+// }
 
-const UserListContainer: any = styled.div`
+const UserListFlex: any = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
 `;
 
-const UserList: any = styled.div`
+const UserListResults: any = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch;
   justify-content: center;
   padding: 0;
-  max-width: 1300px;
+  min-height: 100px;
 `;
 
-interface IPropsUsersDirectory {
+interface IUserListProps {
   users: IUser[];
 }
 
-interface IStateUsersDirectory {
+interface IUserListState {
   currentPage: number;
+  filteredUsers: IUser[];
   genderFilter: FILTER_GENDER;
   maxPage: number;
   nameFilter: NAME_FILTER;
   textFilter: string;
   userInfosModal?: IUser;
   usersPerPage: number;
-  usersToDisplay: IUser[];
 }
 
-class UsersDirectory extends React.Component<
-  IPropsUsersDirectory,
-  IStateUsersDirectory
-> {
-  constructor(props: IPropsUsersDirectory) {
+class UserList extends React.Component<IUserListProps, IUserListState> {
+  constructor(props: IUserListProps) {
     super(props);
     this.state = {
       currentPage: 1,
+      filteredUsers: this.props.users || [], // memoize filtered users to avoid looping on this table at every state refreshing
       genderFilter: 'ALL',
-      maxPage: Math.ceil(this.props.users.length / USERS_PER_PAGE),
-      nameFilter: 'BOTH',
+      maxPage: !!this.props.users
+        ? Math.ceil(this.props.users.length / USERS_PER_PAGE)
+        : 0,
+      nameFilter: 'FIRST_NAME',
       textFilter: '',
       userInfosModal: undefined,
       usersPerPage: USERS_PER_PAGE,
-      usersToDisplay: this.props.users || [],
     };
     this.applyFilters = this.applyFilters.bind(this);
     this.changeCurrentPage = this.changeCurrentPage.bind(this);
@@ -63,26 +72,25 @@ class UsersDirectory extends React.Component<
   public render(): React.ReactNode {
     const userCards: JSX.Element[] = this.renderUserCards();
     return (
-      <UserListContainer>
-        <UserFilters
+      <UserListFlex>
+        <UserListFilters
           genderFilter={this.state.genderFilter}
           nameFilter={this.state.nameFilter}
           textFilter={this.state.textFilter}
           handleFilter={this.applyFilters}
         />
-        <UserList>{userCards}</UserList>
-        <UserPagination
+        <UserListResults>{userCards}</UserListResults>
+        <UserListPagination
           currentPage={this.state.currentPage}
-          usersPerPage={USERS_PER_PAGE}
           maxPage={this.state.maxPage}
-          totalUsers={this.state.usersToDisplay.length}
+          totalUsers={this.state.filteredUsers.length}
           changeCurrentPage={this.changeCurrentPage}
         />
         <UserInfosModal
           closeModal={this.closeModal}
           userInfos={this.state.userInfosModal}
         />
-      </UserListContainer>
+      </UserListFlex>
     );
   }
 
@@ -95,19 +103,20 @@ class UsersDirectory extends React.Component<
       newPage = 1;
     }
 
-    this.setState((prevState: any, props: any) => {
+    this.setState((prevState: IUserListState, props: IUserListProps) => {
       return {
         currentPage: newPage,
       };
     });
   }
 
+  // TODO: use enum and pass one single arguments everytime
   public applyFilters(
     genderFilterParameter?: FILTER_GENDER,
     textFilterParameter?: string,
     nameFilterParameter?: NAME_FILTER
   ): void {
-    this.setState((prevState: any, props: any) => {
+    this.setState((prevState: any, props: IUserListProps) => {
       const genderFilter: FILTER_GENDER =
         genderFilterParameter || prevState.genderFilter;
       const textFilter: string =
@@ -123,14 +132,19 @@ class UsersDirectory extends React.Component<
       users = this.filterUsersByName(users, textFilter, nameFilter);
 
       const maxPage: number = Math.ceil(users.length / USERS_PER_PAGE);
+      let currentPage: number = prevState.currentPage;
+
+      if (maxPage !== prevState.maxPage) {
+        currentPage = 1;
+      }
 
       return {
-        currentPage: 1,
+        currentPage,
+        filteredUsers: users,
         genderFilter,
         maxPage,
         nameFilter,
         textFilter,
-        usersToDisplay: users,
       };
     });
   }
@@ -173,13 +187,6 @@ class UsersDirectory extends React.Component<
     textFilter = textFilter.toLocaleLowerCase();
 
     switch (nameFilter) {
-      case 'BOTH':
-        users = users.filter(
-          (user: IUser) =>
-            user.firstName.toLocaleLowerCase().indexOf(textFilter) !== -1 ||
-            user.lastName.toLocaleLowerCase().indexOf(textFilter) !== -1
-        );
-        break;
       case 'FIRST_NAME':
         users = users.filter(
           (user: IUser) =>
@@ -206,7 +213,7 @@ class UsersDirectory extends React.Component<
 
   private renderUserCards(): JSX.Element[] {
     const paginatedUsers: IUser[] = this.paginateUsers(
-      this.state.usersToDisplay,
+      this.state.filteredUsers,
       this.state.currentPage
     );
     return paginatedUsers.map((user: IUser) => (
@@ -215,4 +222,4 @@ class UsersDirectory extends React.Component<
   }
 }
 
-export default UsersDirectory;
+export default UserList;
