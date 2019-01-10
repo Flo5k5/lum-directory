@@ -150,9 +150,9 @@ class UserList extends React.Component<IUserListProps, IUserListState> {
   }
 
   public openModal(userInfos: IUser): void {
-    this.setState({
-      userInfosModal: userInfos,
-    });
+    // this.setState({
+    //   userInfosModal: userInfos,
+    // });
   }
 
   public closeModal(): void {

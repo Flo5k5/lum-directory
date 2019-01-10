@@ -30,12 +30,12 @@ const UserCardContainer: any = styled.div`
   text-align: center;
 `;
 
-const UserImageContainer: any = styled.div`
+export const UserImageContainer: any = styled.div`
   padding: ${// tslint:disable-next-line: typedef
   (props: any) => props.theme.gutterMedium};
 `;
 
-const UserImage: any = styled.img`
+export const UserImage: any = styled.img`
   max-width: 100px;
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.2) 0 0px 20px 0px;
@@ -74,7 +74,10 @@ interface IUserCardState {
   currentUser: IUser;
 }
 
-class UserCard extends React.Component<IUserCardProps, IUserCardState> {
+export default class UserCard extends React.Component<
+  IUserCardProps,
+  IUserCardState
+> {
   constructor(props: IUserCardProps) {
     super(props);
     this.state = {
@@ -106,5 +109,3 @@ class UserCard extends React.Component<IUserCardProps, IUserCardState> {
     );
   }
 }
-
-export default UserCard;

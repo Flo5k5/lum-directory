@@ -12,7 +12,7 @@ export interface IUser {
   title: string;
 }
 
-export function MapApiResponseToUsers(jsonResponse: any): Promise<IUser[]> {
+export function MapApiResponseToUsers(jsonResponse: any): IUser[] {
   return jsonResponse.results.map(
     (user: any): IUser => ({
       email: user.email,

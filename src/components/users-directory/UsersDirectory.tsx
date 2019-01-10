@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { IUser } from 'src/interfaces/IUser';
-import { UserService } from 'src/services/UserService';
+import UserService from 'src/services/UserService';
 import styled from 'styled-components';
 import { BiggerBoldText } from '../layout/BiggerBoldText';
 import UserList from './UserList';
@@ -39,8 +39,11 @@ interface IUsersDirectoryState {
 }
 
 class UsersDirectory extends React.Component<{}, IUsersDirectoryState> {
+  private userService: UserService;
+
   constructor(props: {}) {
     super(props);
+    this.userService = new UserService();
     this.state = {
       isInError: false,
       isLoading: true,
@@ -49,7 +52,8 @@ class UsersDirectory extends React.Component<{}, IUsersDirectoryState> {
   }
 
   public componentWillMount(): void {
-    UserService.fetchAll()
+    this.userService
+      .fetchAll()
       .then((users: IUser[]) => {
         this.setState({
           isInError: false,
