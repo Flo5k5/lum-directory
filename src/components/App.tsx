@@ -9,7 +9,7 @@ import styled, {
 import { GlobalStyleComponent } from 'styled-components';
 import UsersDirectory from './users-directory/UsersDirectory';
 
-// Load fontAwesome Library
+/** Load fontAwesome Library */
 fontAwesome.init();
 
 const GlobalStyle: GlobalStyleComponent<
@@ -31,6 +31,12 @@ const GlobalStyle: GlobalStyleComponent<
 
 const AppContainer: any = styled.div``;
 
+/**
+ *
+ *
+ * @class App
+ * @extends {React.Component<{}, {}>}
+ */
 class App extends React.Component<{}, {}> {
   public render(): JSX.Element {
     return (

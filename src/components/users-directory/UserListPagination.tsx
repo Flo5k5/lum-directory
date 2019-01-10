@@ -27,6 +27,11 @@ const ColoredSpan: any = styled.span`
   (props: any) => props.theme.colorFontPrimary};
 `;
 
+/**
+ *
+ *
+ * @interface IUserListPaginationProps
+ */
 interface IUserListPaginationProps {
   currentPage: number;
   maxPage: number;
@@ -34,18 +39,36 @@ interface IUserListPaginationProps {
   changeCurrentPage: (n: number) => void;
 }
 
+/**
+ *
+ *
+ * @class UserListPagination
+ * @extends {React.Component<IUserListPaginationProps, {}>}
+ */
 class UserListPagination extends React.Component<IUserListPaginationProps, {}> {
   constructor(props: IUserListPaginationProps) {
     super(props);
     this.clickChangeCurrentPage = this.clickChangeCurrentPage.bind(this);
   }
 
+  /**
+   *
+   *
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
+   * @memberof UserListPagination
+   */
   public clickChangeCurrentPage(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void {
     this.props.changeCurrentPage(+event.currentTarget.value);
   }
 
+  /**
+   *
+   *
+   * @returns {JSX.Element}
+   * @memberof UserListPagination
+   */
   public render(): JSX.Element {
     const paginationBar: JSX.Element[] = this.renderPaginationBar();
     return (
@@ -60,12 +83,26 @@ class UserListPagination extends React.Component<IUserListPaginationProps, {}> {
     );
   }
 
+  /**
+   *
+   *
+   * @private
+   * @returns {JSX.Element[]}
+   * @memberof UserListPagination
+   */
   private renderPaginationBar(): JSX.Element[] {
     return this.caclulatePaginationBarElements().map((element: string) =>
       this.createPaginationButton(element)
     );
   }
 
+  /**
+   *
+   *
+   * @private
+   * @returns {string[]}
+   * @memberof UserListPagination
+   */
   private caclulatePaginationBarElements(): string[] {
     let paginationBar: string[] = [];
     let restToDisplay: number = 0;
@@ -112,6 +149,14 @@ class UserListPagination extends React.Component<IUserListPaginationProps, {}> {
     return paginationBar;
   }
 
+  /**
+   *
+   *
+   * @private
+   * @param {string} value
+   * @returns {JSX.Element}
+   * @memberof UserListPagination
+   */
   private createPaginationButton(value: string): JSX.Element {
     switch (value) {
       case this.props.currentPage.toString():

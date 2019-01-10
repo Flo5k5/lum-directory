@@ -33,10 +33,20 @@ const UserListResults: any = styled.div`
   min-height: 100px;
 `;
 
+/**
+ * Interface that represents the properties object passed to the UserList component.
+ *
+ * @interface IUserListProps
+ */
 interface IUserListProps {
   users: IUser[];
 }
 
+/**
+ * Interface that represents the state object of the UserList component.
+ *
+ * @interface IUserListState
+ */
 interface IUserListState {
   currentPage: number;
   filteredUsers: IUser[];
@@ -48,7 +58,20 @@ interface IUserListState {
   usersPerPage: number;
 }
 
+/**
+ * UserList class is a React's component class used to render the users list results,
+ * filters (by name or by genre), and pagination.
+ * This class use a state to store and route parameters to others sub components.
+ *
+ * @class UserList
+ * @extends {React.Component<IUserListProps, IUserListState>}
+ */
 class UserList extends React.Component<IUserListProps, IUserListState> {
+  /**
+   * Creates an instance of UserList.
+   * @param {IUserListProps} props
+   * @memberof UserList
+   */
   constructor(props: IUserListProps) {
     super(props);
     this.state = {
@@ -69,6 +92,12 @@ class UserList extends React.Component<IUserListProps, IUserListState> {
     this.closeModal = this.closeModal.bind(this);
   }
 
+  /**
+   * React's render function. In this case, it renders the filters, the users list and the pagination.
+   *
+   * @returns {React.ReactNode}
+   * @memberof UserList
+   */
   public render(): React.ReactNode {
     const userCards: JSX.Element[] = this.renderUserCards();
     return (
@@ -94,6 +123,12 @@ class UserList extends React.Component<IUserListProps, IUserListState> {
     );
   }
 
+  /**
+   * Change the current page of the user list. It is a callback function of the UserListPagination component.
+   *
+   * @param {number} newPage - The number of the page to go to.
+   * @memberof UserList
+   */
   public changeCurrentPage(newPage: number): void {
     if (newPage > this.state.maxPage) {
       newPage = this.state.maxPage;
@@ -111,6 +146,15 @@ class UserList extends React.Component<IUserListProps, IUserListState> {
   }
 
   // TODO: use enum and pass one single arguments everytime
+  /**
+   * Applys filters on the users array and store the filtered users in the state object of the component.
+   * It is a callback function of the UserListFilters component.
+   *
+   * @param {FILTER_GENDER} [genderFilterParameter]
+   * @param {string} [textFilterParameter]
+   * @param {NAME_FILTER} [nameFilterParameter]
+   * @memberof UserList
+   */
   public applyFilters(
     genderFilterParameter?: FILTER_GENDER,
     textFilterParameter?: string,
@@ -149,18 +193,38 @@ class UserList extends React.Component<IUserListProps, IUserListState> {
     });
   }
 
+  /**
+   * Opens modal showing infos of a selected user.
+   *
+   * @param {IUser} userInfos - User infos displayed in the modal
+   * @memberof UserList
+   */
   public openModal(userInfos: IUser): void {
     // this.setState({
     //   userInfosModal: userInfos,
     // });
   }
 
+  /**
+   * Closes modal showing infos of a selected user.
+   *
+   * @memberof UserList
+   */
   public closeModal(): void {
     this.setState({
       userInfosModal: undefined,
     });
   }
 
+  /**
+   * Filters users based on their gender.
+   *
+   * @private
+   * @param {IUser[]} users
+   * @param {FILTER_GENDER} genderFilter
+   * @returns {IUser[]}
+   * @memberof UserList
+   */
   private filterUsersByGender(
     users: IUser[],
     genderFilter: FILTER_GENDER
@@ -179,6 +243,16 @@ class UserList extends React.Component<IUserListProps, IUserListState> {
     return users;
   }
 
+  /**
+   * Filters users based on their first name or last name.
+   *
+   * @private
+   * @param {IUser[]} users
+   * @param {string} textFilter
+   * @param {NAME_FILTER} nameFilter
+   * @returns {IUser[]}
+   * @memberof UserList
+   */
   private filterUsersByName(
     users: IUser[],
     textFilter: string,
@@ -206,11 +280,27 @@ class UserList extends React.Component<IUserListProps, IUserListState> {
     return users;
   }
 
+  /**
+   * Extract a specific number of users to be displayed.
+   *
+   * @private
+   * @param {IUser[]} users
+   * @param {number} [currentPage=1]
+   * @returns {IUser[]}
+   * @memberof UserList
+   */
   private paginateUsers(users: IUser[], currentPage: number = 1): IUser[] {
     const start: number = (currentPage - 1) * USERS_PER_PAGE;
     return users.slice(start, start + USERS_PER_PAGE);
   }
 
+  /**
+   * Call the pagination function to get a list of users and render a list of UserCard components based on them.
+   *
+   * @private
+   * @returns {JSX.Element[]}
+   * @memberof UserList
+   */
   private renderUserCards(): JSX.Element[] {
     const paginatedUsers: IUser[] = this.paginateUsers(
       this.state.filteredUsers,

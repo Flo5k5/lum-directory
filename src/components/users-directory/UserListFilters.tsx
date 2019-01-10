@@ -51,6 +51,11 @@ const GroupButton: any = styled.div`
   }
 `;
 
+/**
+ *
+ *
+ * @interface IUserListFiltersProps
+ */
 interface IUserListFiltersProps {
   genderFilter: FILTER_GENDER;
   nameFilter: NAME_FILTER;
@@ -62,6 +67,12 @@ interface IUserListFiltersProps {
   ) => void;
 }
 
+/**
+ *
+ *
+ * @class UserListFilters
+ * @extends {React.Component<IUserListFiltersProps, {}>}
+ */
 class UserListFilters extends React.Component<IUserListFiltersProps, {}> {
   constructor(props: IUserListFiltersProps) {
     super(props);
@@ -70,6 +81,12 @@ class UserListFilters extends React.Component<IUserListFiltersProps, {}> {
     this.onClickGenderButtons = this.onClickGenderButtons.bind(this);
   }
 
+  /**
+   *
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} event
+   * @memberof UserListFilters
+   */
   public onChangeNameFilterInput(
     event: React.ChangeEvent<HTMLInputElement>
   ): void {
@@ -80,6 +97,12 @@ class UserListFilters extends React.Component<IUserListFiltersProps, {}> {
     );
   }
 
+  /**
+   *
+   *
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
+   * @memberof UserListFilters
+   */
   public onClickNameButtons(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void {
@@ -87,6 +110,12 @@ class UserListFilters extends React.Component<IUserListFiltersProps, {}> {
       .currentTarget.value as NAME_FILTER);
   }
 
+  /**
+   *
+   *
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
+   * @memberof UserListFilters
+   */
   public onClickGenderButtons(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void {
@@ -97,6 +126,12 @@ class UserListFilters extends React.Component<IUserListFiltersProps, {}> {
     );
   }
 
+  /**
+   *
+   *
+   * @returns {React.ReactNode}
+   * @memberof UserListFilters
+   */
   public render(): React.ReactNode {
     return (
       <WrapperDiv>

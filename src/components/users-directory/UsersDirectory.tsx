@@ -32,15 +32,31 @@ const TextLoading: any = styled.p`
   (props: any) => props.theme.fontLarge};
 `;
 
+/**
+ *
+ *
+ * @interface IUsersDirectoryState
+ */
 interface IUsersDirectoryState {
   isInError: boolean;
   isLoading: boolean;
   users: IUser[];
 }
 
+/**
+ *
+ *
+ * @class UsersDirectory
+ * @extends {React.Component<{}, IUsersDirectoryState>}
+ */
 class UsersDirectory extends React.Component<{}, IUsersDirectoryState> {
   private userService: UserService;
 
+  /**
+   * Creates an instance of UsersDirectory.
+   * @param {{}} props
+   * @memberof UsersDirectory
+   */
   constructor(props: {}) {
     super(props);
     this.userService = new UserService();
@@ -51,6 +67,11 @@ class UsersDirectory extends React.Component<{}, IUsersDirectoryState> {
     };
   }
 
+  /**
+   *
+   *
+   * @memberof UsersDirectory
+   */
   public componentWillMount(): void {
     this.userService
       .fetchAll()
@@ -69,6 +90,12 @@ class UsersDirectory extends React.Component<{}, IUsersDirectoryState> {
       });
   }
 
+  /**
+   *
+   *
+   * @returns {React.ReactNode}
+   * @memberof UsersDirectory
+   */
   public render(): React.ReactNode {
     const isEmptyUserList: boolean =
       !this.state.users.length && !this.state.isLoading;

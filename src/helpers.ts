@@ -3,6 +3,12 @@ export {};
 declare global {
   // tslint:disable-next-line: interface-name
   interface String {
+    /**
+     *
+     *
+     * @returns {string}
+     * @memberof String
+     */
     capitalizeFirstLetter(): string;
   }
 }

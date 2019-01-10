@@ -1,0 +1,391 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>lum-directory</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">lum-directory</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> lum-directory</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p>This project was bootstrapped with <a href="https://github.com/facebookincubator/create-react-app">Create React App</a>.</p>
+				<h2 id="how-to-run-this-project">How to run this project</h2>
+				<ul>
+					<li>Download this project</li>
+					<li>Execute <code>npm install</code> or <code>yarn</code> to install the third party tools and libraries required to run this project</li>
+					<li>Execute <code>npm run start</code> or <code>yarn start</code> to runs the app in the development mode</li>
+					<li>Open <a href="http://localhost:3000">http://localhost:3000</a> in your browser</li>
+				</ul>
+				<h2 id="folder-structure">Folder Structure</h2>
+				<p>The project&#39;s folder structure look like this:</p>
+				<pre><code>/
+  build/ Contains <span class="hljs-built_in">files</span> that will be used <span class="hljs-keyword">for</span> deployment
+  docs/ Contains <span class="hljs-keyword">the</span> documentation <span class="hljs-keyword">in</span> HTML <span class="hljs-built_in">format</span>
+  node_modules/ - <span class="hljs-number">3</span>rd party libraries <span class="hljs-keyword">and</span> tools used <span class="hljs-keyword">in</span> this project
+  public/ - Public <span class="hljs-built_in">files</span> served <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> browser
+  src/ - Sources <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> project, <span class="hljs-keyword">contains</span> all <span class="hljs-keyword">the</span> logic <span class="hljs-keyword">and</span> templating</code></pre><h2 id="available-scripts">Available Scripts</h2>
+				<p>In the project directory, you can run:</p>
+				<ul>
+					<li><code>npm start</code>
+					or <code>yarn start</code></li>
+				</ul>
+				<p>Runs the app in the development mode.<br>
+				Open <a href="http://localhost:3000">http://localhost:3000</a> to view it in the browser.</p>
+				<p>The page will reload if you make edits.<br>
+				You will also see any lint errors in the console.</p>
+				<ul>
+					<li><code>npm test</code>
+					or <code>yarn test</code></li>
+				</ul>
+				<p>Launches the test runner in the interactive watch mode.<br>
+				See the section about <a href="#running-tests">running tests</a> for more information.</p>
+				<ul>
+					<li><code>npm run build</code>
+					or <code>yarn build</code></li>
+				</ul>
+				<p>Builds the app for production to the <code>build</code> folder.<br>
+				It correctly bundles React in production mode and optimizes the build for the best performance.</p>
+				<p>The build is minified and the filenames include the hashes.<br></p>
+				<p>See the section about <a href="#deployment">deployment</a> for more information.</p>
+				<ul>
+					<li><code>npm run tslint-check</code>
+					or <code>yarn tslint-check</code></li>
+				</ul>
+				<p>Run linting rules and indentation rules over all the project.
+				It will output errors if some rules are broken.</p>
+				<ul>
+					<li><code>npm run type-doc</code>
+					or <code>yarn type-doc</code></li>
+				</ul>
+				<p>Generates a documentation in HTML format based on JSDoc comments found in the project&#39;s source.
+				The generated documentation is located in the folder /docs.</p>
+				<h2 id="linting-and-indentation-rules">Linting and indentation rules</h2>
+				<p>You can find rulesets in the <code>tslint.json</code> file. Four rulesests are used:</p>
+				<ul>
+					<li>tslint:recommended</li>
+					<li>tslint-react</li>
+					<li>tslint-config-prettier</li>
+					<li>tslint-plugin-prettier</li>
+				</ul>
+				<p>And some custome rules for type inference on pretty much everything. It&#39;s a bit too much verbose
+				but at least, you know with accuracy what type you will get or use.</p>
+				<p>Other rules are directly handled in the <code>tsconfig.json</code> file:</p>
+				<ul>
+					<li>forceConsistentCasingInFileNames</li>
+					<li>noImplicitReturns</li>
+					<li>noImplicitThis</li>
+					<li>noImplicitAny</li>
+					<li>importHelpers</li>
+					<li>strictNullChecks</li>
+					<li>suppressImplicitAnyIndexErrors</li>
+					<li>noUnusedLocals</li>
+				</ul>
+				<p>For the indentation, this project use prettier and formatting rules located in the <code>.prettierrc</code> file at the root of the project.
+				It enforces rules about:</p>
+				<pre><code class="language-sh">npm install --save node-sass-chokidar</code></pre>
+				<h2 id="progressive-web-app">Progressive Web App</h2>
+				<p>This project is a Progressive Web App. It can be installed
+					By default, the production build is a fully functional, offline-first
+				<a href="https://developers.google.com/web/progressive-web-apps/">Progressive Web App</a>.</p>
+				<ul>
+					<li>All static site assets are cached so that the page loads fast on subsequent visits. Updates are downloaded in the background.
+					-</li>
+					<li>This app will work regardless of network state, even if offline.</li>
+					<li>On mobile devices, this app can be added directly to the user&#39;s home screen.</li>
+				</ul>
+				<p>The <a href="https://github.com/goldhand/sw-precache-webpack-plugin"><code>sw-precache-webpack-plugin</code></a>
+					is integrated into production configuration,
+					and it will take care of generating a service worker file that will automatically
+					precache all of your local assets and keep them up to date as you deploy updates.
+					The service worker will use a <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/#cache-falling-back-to-network">cache-first strategy</a>
+					for handling all requests for local assets, including the initial HTML, ensuring
+				that your web app is reliably fast, even on a slow or unreliable network.</p>
+				<h3 id="opting-out-of-caching">Opting Out of Caching</h3>
+				<p>If you would prefer not to enable service workers prior to your initial
+					production deployment, then remove the call to <code>serviceWorkerRegistration.register()</code>
+				from <a href="src/index.js"><code>src/index.js</code></a>.</p>
+				<p>If you had previously enabled service workers in your production deployment and
+					have decided that you would like to disable them for all your existing users,
+					you can swap out the call to <code>serviceWorkerRegistration.register()</code> in
+					<a href="src/index.js"><code>src/index.js</code></a> with a call to <code>serviceWorkerRegistration.unregister()</code>.
+					After the user visits a page that has <code>serviceWorkerRegistration.unregister()</code>,
+					the service worker will be uninstalled. Note that depending on how <code>/service-worker.js</code> is served,
+				it may take up to 24 hours for the cache to be invalidated.</p>
+				<h3 id="offline-first-considerations">Offline-First Considerations</h3>
+				<ol>
+					<li><p>Service workers <a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers#you_need_https">require HTTPS</a>,
+							although to facilitate local testing, that policy
+							<a href="http://stackoverflow.com/questions/34160509/options-for-testing-service-workers-via-http/34161385#34161385">does not apply to <code>localhost</code></a>.
+							If your production web server does not support HTTPS, then the service worker
+						registration will fail, but the rest of your web app will remain functional.</p>
+					</li>
+					<li><p>Service workers are <a href="https://jakearchibald.github.io/isserviceworkerready/">not currently supported</a>
+							in all web browsers. Service worker registration <a href="src/registerServiceWorker.js">won&#39;t be attempted</a>
+						on browsers that lack support.</p>
+					</li>
+					<li><p>The service worker is only enabled in the <a href="#deployment">production environment</a>,
+							e.g. the output of <code>npm run build</code>. It&#39;s recommended that you do not enable an
+							offline-first service worker in a development environment, as it can lead to
+							frustration when previously cached assets are used and do not include the latest
+						changes you&#39;ve made locally.</p>
+					</li>
+					<li><p>If you <em>need</em> to test your offline-first service worker locally, build
+							the application (using <code>npm run build</code>) and run a simple http server from your
+							build directory. After running the build script, <code>create-react-app</code> will give
+							instructions for one way to test your production build locally and the <a href="#deployment">deployment instructions</a> have
+							instructions for using other methods. <em>Be sure to always use an
+						incognito window to avoid complications with your browser cache.</em></p>
+					</li>
+					<li><p>If possible, configure your production environment to serve the generated
+							<code>service-worker.js</code> <a href="http://stackoverflow.com/questions/38843970/service-worker-javascript-update-frequency-every-24-hours">with HTTP caching disabled</a>.
+							If that&#39;s not possible—<a href="#github-pages">GitHub Pages</a>, for instance, does not
+							allow you to change the default 10 minute HTTP cache lifetime—then be aware
+							that if you visit your production site, and then revisit again before
+							<code>service-worker.js</code> has expired from your HTTP cache, you&#39;ll continue to get
+							the previously cached assets from the service worker. If you have an immediate
+							need to view your updated production deployment, performing a shift-refresh
+							will temporarily disable the service worker and retrieve all assets from the
+						network.</p>
+					</li>
+					<li><p>Users aren&#39;t always familiar with offline-first web apps. It can be useful to
+							<a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-ux#inform_the_user_when_the_app_is_ready_for_offline_consumption">let the user know</a>
+							when the service worker has finished populating your caches (showing a &quot;This web
+							app works offline!&quot; message) and also let them know when the service worker has
+							fetched the latest updates that will be available the next time they load the
+							page (showing a &quot;New content is available; please refresh.&quot; message). Showing
+							this messages is currently left as an exercise to the developer, but as a
+							starting point, you can make use of the logic included in <a href="src/registerServiceWorker.js"><code>src/registerServiceWorker.js</code></a>, which
+							demonstrates which service worker lifecycle events to listen for to detect each
+							scenario, and which as a default, just logs appropriate messages to the
+						JavaScript console.</p>
+					</li>
+					<li><p>By default, the generated service worker file will not intercept or cache any
+							cross-origin traffic, like HTTP <a href="#integrating-with-an-api-backend">API requests</a>,
+							images, or embeds loaded from a different domain. If you would like to use a
+							runtime caching strategy for those requests, you can <a href="#npm-run-eject"><code>eject</code></a>
+							and then configure the
+							<a href="https://github.com/GoogleChrome/sw-precache#runtimecaching-arrayobject"><code>runtimeCaching</code></a>
+							option in the <code>SWPrecacheWebpackPlugin</code> section of
+						<a href="../config/webpack.config.prod.js"><code>webpack.config.prod.js</code></a>.</p>
+					</li>
+				</ol>
+				<h3 id="progressive-web-app-metadata">Progressive Web App Metadata</h3>
+				<p>The default configuration includes a web app manifest located at
+				<a href="public/manifest.json"><code>public/manifest.json</code></a>.</p>
+				<p>When a user adds a web app to their homescreen using Chrome or Firefox on
+					Android, the metadata in <a href="public/manifest.json"><code>manifest.json</code></a> determines what
+				icons, names, and branding colors to use when the web app is displayed.</p>
+				<h2 id="deployment">Deployment</h2>
+				<p><code>npm run build</code> creates a <code>build</code> directory with a production build of your app.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_components_app_.html">"components/<wbr>App"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_components_app_test_.html">"components/<wbr>App.test"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_components_layout_biggerboldtext_.html">"components/layout/<wbr>Bigger<wbr>Bold<wbr>Text"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_components_layout_button_.html">"components/layout/<wbr>Button"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_components_users_directory_usercard_.html">"components/users-<wbr>directory/<wbr>User<wbr>Card"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_components_users_directory_userimagecontainer_.html">"components/users-<wbr>directory/<wbr>User<wbr>Image<wbr>Container"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_components_users_directory_userinfosmodal_.html">"components/users-<wbr>directory/<wbr>User<wbr>Infos<wbr>Modal"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_components_users_directory_userlist_.html">"components/users-<wbr>directory/<wbr>User<wbr>List"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_components_users_directory_userlistfilters_.html">"components/users-<wbr>directory/<wbr>User<wbr>List<wbr>Filters"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_components_users_directory_userlistpagination_.html">"components/users-<wbr>directory/<wbr>User<wbr>List<wbr>Pagination"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_components_users_directory_usermap_.html">"components/users-<wbr>directory/<wbr>User<wbr>Map"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_components_users_directory_usersdirectory_.html">"components/users-<wbr>directory/<wbr>Users<wbr>Directory"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_helpers_.html">"helpers"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_index_.html">"index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_interfaces_icoordinates_.html">"interfaces/ICoordinates"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_interfaces_ilocation_.html">"interfaces/ILocation"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_interfaces_ithemeinterface_.html">"interfaces/ITheme<wbr>Interface"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_interfaces_itimezone_.html">"interfaces/ITime<wbr>Zone"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_interfaces_iuser_.html">"interfaces/IUser"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_registerserviceworker_.html">"register<wbr>Service<wbr>Worker"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_services_cacheservice_.html">"services/<wbr>Cache<wbr>Service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_services_userservice_.html">"services/<wbr>User<wbr>Service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_themes_iconlibrary_.html">"themes/<wbr>Icon<wbr>Library"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_themes_styledcomponents_.html">"themes/<wbr>Styled<wbr>Components"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

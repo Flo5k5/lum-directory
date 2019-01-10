@@ -1,6 +1,12 @@
 import './../helpers';
 import { ILocation } from './ILocation';
 
+/**
+ * Interface used to describe user informations from randomuser.me API.
+ *
+ * @export
+ * @interface IUser
+ */
 export interface IUser {
   email: string;
   firstName: string;

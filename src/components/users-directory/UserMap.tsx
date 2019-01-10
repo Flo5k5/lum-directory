@@ -4,12 +4,24 @@ import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
 const ZOOM: number = 13;
 
+/**
+ *
+ *
+ * @interface IUserMapProps
+ */
 interface IUserMapProps {
   latitude: number;
   longitude: number;
   address: string;
 }
 
+/**
+ *
+ *
+ * @export
+ * @class UserMap
+ * @extends {React.Component<IUserMapProps, {}>}
+ */
 export default class UserMap extends React.Component<IUserMapProps, {}> {
   public render(): JSX.Element {
     const position: [number, number] = [

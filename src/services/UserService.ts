@@ -5,11 +5,26 @@ const USERS_API_URL: string =
   'https://randomuser.me/api/?results=5000&seed=lumapps';
 const USERSERVICE_CACHE_KEY: string = 'users';
 
+/**
+ *
+ *
+ * @export
+ * @class UserService
+ */
 export default class UserService {
   private cacheService: CacheService<IUser>;
+  /**
+   * Creates an instance of UserService.
+   * @memberof UserService
+   */
   constructor() {
     this.cacheService = new CacheService(USERSERVICE_CACHE_KEY);
   }
+  /**
+   *
+   *
+   * @memberof UserService
+   */
   public fetchAll = async (): Promise<IUser[]> => {
     let results: any;
 

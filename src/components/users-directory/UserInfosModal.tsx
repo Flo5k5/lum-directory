@@ -85,20 +85,43 @@ const CloseButton: any = styled.span`
 
 const UserInfos: any = styled.p``;
 
+/**
+ *
+ *
+ * @interface IPropsUserInfosModal
+ */
 interface IPropsUserInfosModal {
   closeModal: () => void;
   userInfos: IUser | undefined;
 }
 
+/**
+ *
+ *
+ * @export
+ * @class UserInfosModal
+ * @extends {React.Component<IPropsUserInfosModal, {}>}
+ */
 export default class UserInfosModal extends React.Component<
   IPropsUserInfosModal,
   {}
 > {
+  /**
+   * Creates an instance of UserInfosModal.
+   * @param {IPropsUserInfosModal} props
+   * @memberof UserInfosModal
+   */
   constructor(props: IPropsUserInfosModal) {
     super(props);
     this.closeModal = this.closeModal.bind(this);
   }
 
+  /**
+   *
+   *
+   * @returns {(JSX.Element | null)}
+   * @memberof UserInfosModal
+   */
   public render(): JSX.Element | null {
     const userInfos: IUser | undefined = this.props.userInfos;
     if (!!userInfos) {
@@ -137,6 +160,12 @@ export default class UserInfosModal extends React.Component<
     }
   }
 
+  /**
+   *
+   *
+   * @param {React.MouseEvent<HTMLDivElement, MouseEvent>} event
+   * @memberof UserInfosModal
+   */
   public closeModal(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void {
     this.props.closeModal();
   }

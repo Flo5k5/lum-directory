@@ -1,3 +1,9 @@
+/**
+ * Interface used to describe theme object used in styled-components.
+ *
+ * @export
+ * @interface IThemeInterface
+ */
 export default interface IThemeInterface {
   borderSize: string;
   borderStyle: string;
