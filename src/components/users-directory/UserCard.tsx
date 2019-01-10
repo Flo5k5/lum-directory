@@ -123,7 +123,7 @@ export default class UserCard extends React.Component<
         <UserCardContainer onClick={this.onCardClick}>
           <UserImageContainer>
             <UserImage
-              src={infos.largePicture + 1}
+              src={infos.largePicture}
               onError={this.addFallbackImageSrc}
             />
           </UserImageContainer>
