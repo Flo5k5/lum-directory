@@ -1,9 +1,12 @@
 import * as React from 'react';
 import styled from 'src/themes/StyledComponents';
-import { BiggerBoldText } from '../layout/BiggerBoldText';
 import { Button } from '../layout/Button';
+import { Span } from '../layout/Span';
 
+/** Number of buttons to display in the pagination toolbar */
 const BUTTONS_TO_SHOW: number = 7;
+
+/** Styled component used to position all the UserListPagination sub components  */
 const WrapperDiv: any = styled.div`
   align-self: stretch;
   display: flex;
@@ -15,20 +18,20 @@ const WrapperDiv: any = styled.div`
   (props: any) => props.theme.gutterLarge};
 `;
 
+/** Styled component used to display the total number of users */
 const UserCountSpan: any = styled.span`
   display: flex;
   align-items: center;
 `;
+
+/** Styled component that contains pagination toolbar and its button components */
 const PaginationBar: any = styled.div``;
+
+/** Styled component used as spacer to position correctly users counter and pagination toolbar */
 const Spacer: any = styled.div``;
 
-const ColoredSpan: any = styled.span`
-  color: ${// tslint:disable-next-line: typedef
-  (props: any) => props.theme.colorFontPrimary};
-`;
-
 /**
- *
+ * Represents the properties object of the UserListPagination component.
  *
  * @interface IUserListPaginationProps
  */
@@ -40,19 +43,48 @@ interface IUserListPaginationProps {
 }
 
 /**
- *
+ * UserListPagination is a React component class that handle the rendering of the pagination
+ * toolbar and its button components. It displays a counter of the currently displayed users.
  *
  * @class UserListPagination
  * @extends {React.Component<IUserListPaginationProps, {}>}
  */
-class UserListPagination extends React.Component<IUserListPaginationProps, {}> {
+export default class UserListPagination extends React.Component<
+  IUserListPaginationProps,
+  {}
+> {
   constructor(props: IUserListPaginationProps) {
     super(props);
     this.clickChangeCurrentPage = this.clickChangeCurrentPage.bind(this);
   }
 
   /**
+   * React's render function to render all components of the users list
    *
+   * @returns {JSX.Element}
+   * @memberof UserListPagination
+   */
+  public render(): JSX.Element {
+    const paginationBar: JSX.Element[] = this.renderPaginationBar(
+      this.props.currentPage,
+      this.props.maxPage
+    );
+    return (
+      <WrapperDiv>
+        <Spacer>&nbsp;</Spacer>
+        <PaginationBar>{paginationBar}</PaginationBar>
+        <UserCountSpan>
+          <Span bold={true} color={'secondary'} fontSize='large'>
+            {this.props.totalUsers}
+          </Span>
+          <Span>&nbsp;users</Span>
+        </UserCountSpan>
+      </WrapperDiv>
+    );
+  }
+
+  /**
+   * Handle the click event to change the current page of users
    *
    * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
    * @memberof UserListPagination
@@ -64,56 +96,44 @@ class UserListPagination extends React.Component<IUserListPaginationProps, {}> {
   }
 
   /**
+   * Renders the pagination toolbar (an array of button components).
    *
-   *
-   * @returns {JSX.Element}
+   * @private
+   * @param {number} [currentPage=1] - Value of the current page
+   * @param {number} [maxPage=1] - Value of the last page
+   * @returns {JSX.Element[]} - Array of button components
    * @memberof UserListPagination
    */
-  public render(): JSX.Element {
-    const paginationBar: JSX.Element[] = this.renderPaginationBar();
-    return (
-      <WrapperDiv>
-        <Spacer>&nbsp;</Spacer>
-        <PaginationBar>{paginationBar}</PaginationBar>
-        <UserCountSpan>
-          <BiggerBoldText>{this.props.totalUsers}</BiggerBoldText>{' '}
-          <ColoredSpan>users</ColoredSpan>
-        </UserCountSpan>
-      </WrapperDiv>
+  private renderPaginationBar(
+    currentPage: number = 1,
+    maxPage: number = 1
+  ): JSX.Element[] {
+    return this.caclulatePaginationBarElements(currentPage, maxPage).map(
+      (element: string) =>
+        this.createPaginationButton(element, currentPage, maxPage)
     );
   }
 
   /**
-   *
-   *
-   * @private
-   * @returns {JSX.Element[]}
-   * @memberof UserListPagination
-   */
-  private renderPaginationBar(): JSX.Element[] {
-    return this.caclulatePaginationBarElements().map((element: string) =>
-      this.createPaginationButton(element)
-    );
-  }
-
-  /**
-   *
+   * Handle all the logic to generate the pagination toolbar.
    *
    * @private
-   * @returns {string[]}
+   * @param {number} [currentPage=1] - Value of the current page
+   * @param {number} [maxPage=1] - Value of the last page
+   * @returns {string[]} - Array of value that will be displayed in button components
    * @memberof UserListPagination
    */
-  private caclulatePaginationBarElements(): string[] {
+  private caclulatePaginationBarElements(
+    currentPage: number = 1,
+    maxPage: number = 1
+  ): string[] {
     let paginationBar: string[] = [];
     let restToDisplay: number = 0;
-    const offsetleft: number = this.props.currentPage - 1;
-    const offsetRight: number = this.props.maxPage - this.props.currentPage;
+    const offsetleft: number = currentPage - 1;
+    const offsetRight: number = maxPage - currentPage;
 
     if (offsetleft <= 3 && offsetRight <= 3) {
-      restToDisplay =
-        this.props.maxPage < BUTTONS_TO_SHOW
-          ? this.props.maxPage
-          : BUTTONS_TO_SHOW;
+      restToDisplay = maxPage < BUTTONS_TO_SHOW ? maxPage : BUTTONS_TO_SHOW;
 
       for (let i: number = 1; i <= restToDisplay; i++) {
         paginationBar.push(i.toString());
@@ -125,12 +145,12 @@ class UserListPagination extends React.Component<IUserListPaginationProps, {}> {
       for (let i: number = 1; i <= restToDisplay; i++) {
         tempArray.push(i.toString());
       }
-      paginationBar = [...tempArray, '>', this.props.maxPage.toString()];
+      paginationBar = [...tempArray, '>', maxPage.toString()];
     } else if (offsetRight <= 3) {
       const tempArray: string[] = [];
       // +2 beacause there are two static elements in this bar (1 and '>')
-      restToDisplay = this.props.maxPage - BUTTONS_TO_SHOW + 2;
-      for (let i: number = this.props.maxPage; i > restToDisplay; i--) {
+      restToDisplay = maxPage - BUTTONS_TO_SHOW + 2;
+      for (let i: number = maxPage; i > restToDisplay; i--) {
         tempArray.push(i.toString());
       }
       paginationBar = ['1', '<', ...tempArray.reverse()];
@@ -138,11 +158,11 @@ class UserListPagination extends React.Component<IUserListPaginationProps, {}> {
       paginationBar = [
         '1',
         '<',
-        (+this.props.currentPage - 1).toString(),
-        this.props.currentPage.toString(),
-        (+this.props.currentPage + 1).toString(),
+        (+currentPage - 1).toString(),
+        currentPage.toString(),
+        (+currentPage + 1).toString(),
         '>',
-        this.props.maxPage.toString(),
+        maxPage.toString(),
       ];
     }
 
@@ -150,30 +170,36 @@ class UserListPagination extends React.Component<IUserListPaginationProps, {}> {
   }
 
   /**
-   *
+   * Create a button component for pagination based on the value passed as argument.
    *
    * @private
-   * @param {string} value
-   * @returns {JSX.Element}
+   * @param {string} value - Value to display in returned button component
+   * @param {number} [currentPage=1] - Value of the current page
+   * @param {number} [maxPage=1] - Value of the last page
+   * @returns {JSX.Element} - Button component
    * @memberof UserListPagination
    */
-  private createPaginationButton(value: string): JSX.Element {
+  private createPaginationButton(
+    value: string,
+    currentPage: number = 1,
+    maxPage: number = 1
+  ): JSX.Element {
     switch (value) {
-      case this.props.currentPage.toString():
+      case currentPage.toString():
         return (
           <Button key={value} disabled={true}>
-            {this.props.currentPage}
+            {currentPage}
           </Button>
         );
 
-      case this.props.maxPage.toString():
+      case maxPage.toString():
         return (
           <Button
             key={value}
-            disabled={this.props.currentPage >= this.props.maxPage}
+            disabled={currentPage >= maxPage}
             onClick={this.clickChangeCurrentPage}
-            value={this.props.maxPage}>
-            {this.props.maxPage}
+            value={maxPage}>
+            {maxPage}
           </Button>
         );
 
@@ -182,7 +208,7 @@ class UserListPagination extends React.Component<IUserListPaginationProps, {}> {
           <Button
             key={value}
             onClick={this.clickChangeCurrentPage}
-            value={+this.props.currentPage - 2}>
+            value={+currentPage - 2}>
             {'<'}
           </Button>
         );
@@ -192,7 +218,7 @@ class UserListPagination extends React.Component<IUserListPaginationProps, {}> {
           <Button
             key={value}
             onClick={this.clickChangeCurrentPage}
-            value={+this.props.currentPage + 2}>
+            value={+currentPage + 2}>
             {'>'}
           </Button>
         );
@@ -201,7 +227,7 @@ class UserListPagination extends React.Component<IUserListPaginationProps, {}> {
         return (
           <Button
             key={value}
-            disabled={this.props.currentPage === +value}
+            disabled={currentPage === +value}
             onClick={this.clickChangeCurrentPage}
             value={+value}>
             {value}
@@ -210,5 +236,3 @@ class UserListPagination extends React.Component<IUserListPaginationProps, {}> {
     }
   }
 }
-
-export default UserListPagination;

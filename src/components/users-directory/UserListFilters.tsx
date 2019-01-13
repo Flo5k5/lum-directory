@@ -1,10 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import styled from 'src/themes/StyledComponents';
-import { BiggerBoldText } from '../layout/BiggerBoldText';
 import { Button } from '../layout/Button';
+import { GroupButton } from '../layout/GroupButtons';
+import { Span } from '../layout/Span';
+import { TextInput } from '../layout/TextInput';
 import { FILTER_GENDER, NAME_FILTER } from './UserList';
 
+/** Styled component that contains all the others component. */
 const WrapperDiv: any = styled.div`
   align-self: stretch;
   display: flex;
@@ -15,44 +18,9 @@ const WrapperDiv: any = styled.div`
   padding: ${// tslint:disable-next-line: typedef
   (props: any) => props.theme.gutterLarge};
 `;
-const NameFilterInput: any = styled.input`
-  height: 35px;
-  box-sizing: border-box;
-  border: ${// tslint:disable-next-line: typedef
-    (props: any) =>
-      props.theme.borderSize} ${// tslint:disable-next-line: typedef
-    (props: any) =>
-      props.theme.borderStyle} ${// tslint:disable-next-line: typedef
-    (props: any) => props.theme.colorFontPrimary};
-  color: ${// tslint:disable-next-line: typedef
-  (props: any) => props.theme.colorFontPrimary};
-  padding: 0 ${// tslint:disable-next-line: typedef
-    (props: any) => props.theme.gutterSmall};
-  :focus {
-    outline: none;
-  }
-`;
-const GroupButton: any = styled.div`
-  display: inline-block;
-  margin-right: 0 ${// tslint:disable-next-line: typedef
-    (props: any) => props.theme.gutterLarge};
-
-  ${Button}, ${NameFilterInput} {
-    border-left: none;
-  }
-
-  ${Button}:first-child {
-    border-left: ${// tslint:disable-next-line: typedef
-      (props: any) =>
-        props.theme.borderSize} ${// tslint:disable-next-line: typedef
-      (props: any) =>
-        props.theme.borderStyle} ${// tslint:disable-next-line: typedef
-      (props: any) => props.theme.colorFontPrimary};
-  }
-`;
 
 /**
- *
+ * Represents the properties object of the UserListFilters component.
  *
  * @interface IUserListFiltersProps
  */
@@ -68,12 +36,20 @@ interface IUserListFiltersProps {
 }
 
 /**
- *
+ * UserListFilters class is a React component class used to render the users list filters (by name or by genre).
  *
  * @class UserListFilters
  * @extends {React.Component<IUserListFiltersProps, {}>}
  */
-class UserListFilters extends React.Component<IUserListFiltersProps, {}> {
+export default class UserListFilters extends React.Component<
+  IUserListFiltersProps,
+  {}
+> {
+  /**
+   * Creates an instance of UserListFilters.
+   * @param {IUserListFiltersProps} props
+   * @memberof UserListFilters
+   */
   constructor(props: IUserListFiltersProps) {
     super(props);
     this.onChangeNameFilterInput = this.onChangeNameFilterInput.bind(this);
@@ -82,7 +58,7 @@ class UserListFilters extends React.Component<IUserListFiltersProps, {}> {
   }
 
   /**
-   *
+   * Handles changes on the name filter input.
    *
    * @param {React.ChangeEvent<HTMLInputElement>} event
    * @memberof UserListFilters
@@ -98,7 +74,7 @@ class UserListFilters extends React.Component<IUserListFiltersProps, {}> {
   }
 
   /**
-   *
+   * Handles clicks on the name buttons to change the filter.
    *
    * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
    * @memberof UserListFilters
@@ -111,7 +87,7 @@ class UserListFilters extends React.Component<IUserListFiltersProps, {}> {
   }
 
   /**
-   *
+   * Handles clicks on the 'gender' buttons to filter by gender.
    *
    * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
    * @memberof UserListFilters
@@ -127,7 +103,7 @@ class UserListFilters extends React.Component<IUserListFiltersProps, {}> {
   }
 
   /**
-   *
+   * Renders the users list filters (by name or by genre).
    *
    * @returns {React.ReactNode}
    * @memberof UserListFilters
@@ -135,7 +111,9 @@ class UserListFilters extends React.Component<IUserListFiltersProps, {}> {
   public render(): React.ReactNode {
     return (
       <WrapperDiv>
-        <BiggerBoldText>Filters</BiggerBoldText>
+        <Span bold={true} color={'secondary'} fontSize='large'>
+          Filters
+        </Span>
         <GroupButton>
           <Button
             adaptiveWidth={true}
@@ -151,7 +129,7 @@ class UserListFilters extends React.Component<IUserListFiltersProps, {}> {
             value='LAST_NAME'>
             Last name
           </Button>
-          <NameFilterInput
+          <TextInput
             value={this.props.textFilter}
             onChange={this.onChangeNameFilterInput}
           />
@@ -183,5 +161,3 @@ class UserListFilters extends React.Component<IUserListFiltersProps, {}> {
     );
   }
 }
-
-export default UserListFilters;

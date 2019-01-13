@@ -1,39 +1,20 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { IUser } from 'src/interfaces/IUser';
 import UserService from 'src/services/UserService';
 import styled from 'styled-components';
-import { BiggerBoldText } from '../layout/BiggerBoldText';
+import { Loading } from '../layout/Loading';
+import { Span } from '../layout/Span';
 import UserList from './UserList';
 
+/** Style component that host position sub components. */
 const UserListContainer: any = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const Loader: any = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: ${// tslint:disable-next-line: typedef
-  (props: any) => props.theme.colorFontPrimary};
-`;
-
-const TextLoading: any = styled.p`
-  color: ${// tslint:disable-next-line: typedef
-  (props: any) => props.theme.colorFontPrimary};
-  font-weight: bold;
-  font-size: ${// tslint:disable-next-line: typedef
-  (props: any) => props.theme.fontLarge};
-`;
-
 /**
- *
+ * Represents the state object of the UsersDirectory component.
  *
  * @interface IUsersDirectoryState
  */
@@ -44,12 +25,22 @@ interface IUsersDirectoryState {
 }
 
 /**
- *
+ * Fetches an user list from an API, displays loading, errors and the users list.
  *
  * @class UsersDirectory
  * @extends {React.Component<{}, IUsersDirectoryState>}
  */
-class UsersDirectory extends React.Component<{}, IUsersDirectoryState> {
+export default class UsersDirectory extends React.Component<
+  {},
+  IUsersDirectoryState
+> {
+  /**
+   * Instance of the UserService
+   *
+   * @private
+   * @type {UserService}
+   * @memberof UsersDirectory
+   */
   private userService: UserService;
 
   /**
@@ -68,7 +59,7 @@ class UsersDirectory extends React.Component<{}, IUsersDirectoryState> {
   }
 
   /**
-   *
+   * Fetches users list from API before component will be rendered.
    *
    * @memberof UsersDirectory
    */
@@ -91,7 +82,7 @@ class UsersDirectory extends React.Component<{}, IUsersDirectoryState> {
   }
 
   /**
-   *
+   * Displays loading, errors and the users list.
    *
    * @returns {React.ReactNode}
    * @memberof UsersDirectory
@@ -106,19 +97,10 @@ class UsersDirectory extends React.Component<{}, IUsersDirectoryState> {
     return (
       <UserListContainer>
         {isReadyToListUsers && <UserList users={this.state.users} />}
-        {this.state.isLoading && (
-          <Loader>
-            <FontAwesomeIcon icon='circle-notch' size='3x' spin={true} />
-            <TextLoading>Loading...</TextLoading>
-          </Loader>
-        )}
-        {isEmptyUserList && <BiggerBoldText>No user available</BiggerBoldText>}
-        {!!this.state.isInError && (
-          <BiggerBoldText>Something is broken!</BiggerBoldText>
-        )}
+        <Loading show={this.state.isLoading} />
+        <Span show={isEmptyUserList}>No user available</Span>
+        <Span show={!!this.state.isInError}>Something is broken!</Span>
       </UserListContainer>
     );
   }
 }
-
-export default UsersDirectory;

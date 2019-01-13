@@ -1,5 +1,6 @@
 /**
- *
+ * Class used to abstract the storage layer. Currently it stores items in
+ * the local storage.
  *
  * @export
  * @class CacheService
@@ -7,15 +8,7 @@
  */
 export default class CacheService<T> {
   /**
-   *
-   *
-   * @type {T[]}
-   * @memberof CacheService
-   */
-  public items: T[];
-
-  /**
-   *
+   * String used as a key to differentiate stored items in the local storage.
    *
    * @private
    * @type {string}
@@ -30,11 +23,10 @@ export default class CacheService<T> {
    */
   constructor(cacheKey: string) {
     this.cacheKey = cacheKey;
-    this.items = this.getItems();
   }
 
   /**
-   *
+   * Gets items stored in the local storage.
    *
    * @returns {T[]}
    * @memberof CacheService
@@ -42,6 +34,10 @@ export default class CacheService<T> {
   public getItems(): T[] {
     const storedItems: string | null = localStorage.getItem(this.cacheKey);
     if (!!storedItems) {
+      // tslint:disable-next-line: no-console
+      console.info(
+        `[info]CacheService.getItems: get ${this.cacheKey} from cache.`
+      );
       return JSON.parse(storedItems);
     } else {
       return [];
@@ -49,29 +45,12 @@ export default class CacheService<T> {
   }
 
   /**
-   *
+   * Stores items in the local storage.
    *
    * @param {T[]} items
    * @memberof CacheService
    */
   public setItems(items: T[]): void {
     localStorage.setItem(this.cacheKey, JSON.stringify(items));
-  }
-
-  /**
-   *
-   *
-   * @param {T[]} items
-   * @returns {T[]}
-   * @memberof CacheService
-   */
-  public getOrUpdateItems(items: T[]): T[] {
-    const storedItems: string | null = localStorage.getItem(this.cacheKey);
-    if (!!storedItems) {
-      return JSON.parse(storedItems);
-    } else {
-      localStorage.setItem(this.cacheKey, JSON.stringify(items));
-      return items;
-    }
   }
 }

@@ -20,7 +20,8 @@ const isLocalhost: boolean = Boolean(
 );
 
 /**
- *
+ * Checks if the context meets the requirement for service worker and
+ * registers it.
  *
  * @export
  * @returns {void}
@@ -63,7 +64,7 @@ export default function register(): void {
 }
 
 /**
- *
+ * Registers the service worker and update it with new content if available.
  *
  * @param {string} swUrl
  */
@@ -99,7 +100,7 @@ function registerValidSW(swUrl: string): void {
 }
 
 /**
- *
+ * Checks if the service worker can be found. If it can't reload the page.
  *
  * @param {string} swUrl
  */
@@ -133,7 +134,7 @@ function checkValidServiceWorker(swUrl: string): void {
 }
 
 /**
- *
+ * Unregisters the service worker.
  *
  * @export
  */

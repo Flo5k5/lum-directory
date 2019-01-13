@@ -1,8 +1,13 @@
 import * as React from 'react';
-import fallbackUserPicture from 'src/assets/fallbackUserPicture.png';
 import { IUser } from 'src/interfaces/IUser';
 import styled from 'src/themes/StyledComponents';
+import { Span } from '../layout/Span';
+import UserProfilePicture from './UserProfilePicture';
 
+/** Styled component that contains all the others component.
+ * Main goal is to use this to create a fixed minimum white margin
+ * around user's card and position it against other cards.
+ */
 const WrapperDiv: any = styled.div`
   box-sizing: border-box;
   margin: 0;
@@ -18,6 +23,7 @@ const WrapperDiv: any = styled.div`
   flex: 1 0 auto;
 `;
 
+/** Styled component that styles borders of the user's card. */
 const UserCardContainer: any = styled.div`
   cursor: pointer;
   box-sizing: border-box;
@@ -30,18 +36,10 @@ const UserCardContainer: any = styled.div`
   text-align: center;
 `;
 
-export const UserImageContainer: any = styled.div`
-  padding: ${// tslint:disable-next-line: typedef
-  (props: any) => props.theme.gutterMedium};
-`;
-
-export const UserImage: any = styled.img`
-  max-width: 100px;
-  border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 0px 20px 0px;
-`;
-
+/** Styled components that hosts and formats textual informations of a user.  */
 const UserCardContent: any = styled.div`
+  white-space: pre-line;
+  text-overflow: ellipsis;
   overflow: hidden;
   padding: ${// tslint:disable-next-line: typedef
   (props: any) => props.theme.gutterSmall};
@@ -50,22 +48,8 @@ const UserCardContent: any = styled.div`
   (props: any) => props.theme.gutterMedium};
 `;
 
-const UserCardName: any = styled.span`
-  display: block;
-  font-weight: bold;
-  font-size: ${// tslint:disable-next-line: typedef
-  (props) => props.theme.fontMedium};
-`;
-
-const UserCardMail: any = styled.span`
-  color: ${// tslint:disable-next-line: typedef
-  (props: any) => props.theme.colorFontPrimary};
-  font-size: ${// tslint:disable-next-line: typedef
-  (props: any) => props.theme.fontSmall};
-`;
-
 /**
- *
+ * Represents the properties object of the UserCard component.
  *
  * @interface IUserCardProps
  */
@@ -76,7 +60,7 @@ interface IUserCardProps {
 }
 
 /**
- *
+ * Represents the state object of the UserCard component.
  *
  * @interface IUserCardState
  */
@@ -85,7 +69,8 @@ interface IUserCardState {
 }
 
 /**
- *
+ * React's component class that renders a card showing basic informations of a
+ * user and its profile picture.
  *
  * @export
  * @class UserCard
@@ -106,7 +91,6 @@ export default class UserCard extends React.Component<
       currentUser: this.props.infos,
     };
     this.onCardClick = this.onCardClick.bind(this);
-    this.addFallbackImageSrc = this.addFallbackImageSrc.bind(this);
   }
 
   /**
@@ -121,17 +105,12 @@ export default class UserCard extends React.Component<
     return (
       <WrapperDiv>
         <UserCardContainer onClick={this.onCardClick}>
-          <UserImageContainer>
-            <UserImage
-              src={infos.largePicture}
-              onError={this.addFallbackImageSrc}
-            />
-          </UserImageContainer>
+          <UserProfilePicture pictureUrl={infos.largePicture} />
           <UserCardContent>
-            <UserCardName>
+            <Span bold={true} color={'secondary'}>
               {infos.lastName} {infos.firstName}
-            </UserCardName>
-            <UserCardMail>{infos.email}</UserCardMail>
+            </Span>
+            <Span fontSize={'small'}>{infos.email}</Span>
           </UserCardContent>
         </UserCardContainer>
       </WrapperDiv>
@@ -144,15 +123,5 @@ export default class UserCard extends React.Component<
    */
   public onCardClick(): void {
     this.props.clickHandler(this.state.currentUser);
-  }
-
-  /**
-   * Adds fallback picture to an image with a broken src.
-   *
-   * @param {*} event
-   * @memberof UserCard
-   */
-  public addFallbackImageSrc(event: any): void {
-    event.target.src = fallbackUserPicture;
   }
 }

@@ -9,9 +9,10 @@ import styled, {
 import { GlobalStyleComponent } from 'styled-components';
 import UsersDirectory from './users-directory/UsersDirectory';
 
-/** Load fontAwesome Library */
+/** Load fontAwesome Library. */
 fontAwesome.init();
 
+/** Contains global style for parent's element. */
 const GlobalStyle: GlobalStyleComponent<
   {},
   IThemeInterface
@@ -29,10 +30,12 @@ const GlobalStyle: GlobalStyleComponent<
   }
 `;
 
+/** Styled component that hosts others React components. */
 const AppContainer: any = styled.div``;
 
 /**
- *
+ * Loads current styled component theme and global style for parent's elements.
+ * Contains the child components like UsersDirectory.
  *
  * @class App
  * @extends {React.Component<{}, {}>}

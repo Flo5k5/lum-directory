@@ -4,7 +4,7 @@ declare global {
   // tslint:disable-next-line: interface-name
   interface String {
     /**
-     *
+     * Extend String's prototype, capitalize first letter of the current string.
      *
      * @returns {string}
      * @memberof String

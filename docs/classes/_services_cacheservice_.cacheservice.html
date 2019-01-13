@@ -69,6 +69,24 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Class used to abstract the storage layer. Currently it stores items in
+						the local storage.</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>export</dt>
+						<dd></dd>
+						<dt>class</dt>
+						<dd><p>CacheService</p>
+						</dd>
+						<dt>template</dt>
+						<dd><p>T</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -95,18 +113,16 @@
 								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_services_cacheservice_.cacheservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_services_cacheservice_.cacheservice.html#cachekey" class="tsd-kind-icon">cache<wbr>Key</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_services_cacheservice_.cacheservice.html#items" class="tsd-kind-icon">items</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_services_cacheservice_.cacheservice.html#getitems" class="tsd-kind-icon">get<wbr>Items</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_services_cacheservice_.cacheservice.html#getorupdateitems" class="tsd-kind-icon">get<wbr>OrUpdate<wbr>Items</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_services_cacheservice_.cacheservice.html#setitems" class="tsd-kind-icon">set<wbr>Items</a></li>
 							</ul>
 						</section>
@@ -125,9 +141,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Flo5k5/lum-directory/blob/05e29f7/src/services/CacheService.ts#L3">services/CacheService.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/Flo5k5/lum-directory/blob/22b0efa/src/services/CacheService.ts#L17">services/CacheService.ts:17</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an instance of CacheService.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>CacheService</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -139,7 +165,7 @@
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="cachekey" class="tsd-anchor"></a>
@@ -147,19 +173,22 @@
 					<div class="tsd-signature tsd-kind-icon">cache<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Flo5k5/lum-directory/blob/05e29f7/src/services/CacheService.ts#L3">services/CacheService.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/Flo5k5/lum-directory/blob/22b0efa/src/services/CacheService.ts#L17">services/CacheService.ts:17</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="items" class="tsd-anchor"></a>
-					<h3>items</h3>
-					<div class="tsd-signature tsd-kind-icon">items<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Flo5k5/lum-directory/blob/05e29f7/src/services/CacheService.ts#L2">services/CacheService.ts:2</a></li>
-						</ul>
-					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>String used as a key to differentiate stored items in the local storage.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>CacheService</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -174,32 +203,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Flo5k5/lum-directory/blob/05e29f7/src/services/CacheService.ts#L10">services/CacheService.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/Flo5k5/lum-directory/blob/22b0efa/src/services/CacheService.ts#L34">services/CacheService.ts:34</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getorupdateitems" class="tsd-anchor"></a>
-					<h3>get<wbr>OrUpdate<wbr>Items</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>OrUpdate<wbr>Items<span class="tsd-signature-symbol">(</span>items<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Flo5k5/lum-directory/blob/05e29f7/src/services/CacheService.ts#L23">services/CacheService.ts:23</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>items: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-							</ul>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets items stored in the local storage.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>CacheService</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
@@ -214,9 +230,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Flo5k5/lum-directory/blob/05e29f7/src/services/CacheService.ts#L19">services/CacheService.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/Flo5k5/lum-directory/blob/22b0efa/src/services/CacheService.ts#L53">services/CacheService.ts:53</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Stores items in the local storage.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>CacheService</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -235,77 +261,8 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_app_.html">"components/<wbr>App"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_app_test_.html">"components/<wbr>App.test"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_layout_biggerboldtext_.html">"components/layout/<wbr>Bigger<wbr>Bold<wbr>Text"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_layout_button_.html">"components/layout/<wbr>Button"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_users_directory_usercard_.html">"components/users-<wbr>directory/<wbr>User<wbr>Card"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_users_directory_userimagecontainer_.html">"components/users-<wbr>directory/<wbr>User<wbr>Image<wbr>Container"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_users_directory_userinfosmodal_.html">"components/users-<wbr>directory/<wbr>User<wbr>Infos<wbr>Modal"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_users_directory_userlist_.html">"components/users-<wbr>directory/<wbr>User<wbr>List"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_users_directory_userlistfilters_.html">"components/users-<wbr>directory/<wbr>User<wbr>List<wbr>Filters"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_users_directory_userlistpagination_.html">"components/users-<wbr>directory/<wbr>User<wbr>List<wbr>Pagination"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_users_directory_usermap_.html">"components/users-<wbr>directory/<wbr>User<wbr>Map"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_components_users_directory_usersdirectory_.html">"components/users-<wbr>directory/<wbr>Users<wbr>Directory"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_.html">"helpers"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">"index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_interfaces_icoordinates_.html">"interfaces/ICoordinates"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_interfaces_ilocation_.html">"interfaces/ILocation"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_interfaces_ithemeinterface_.html">"interfaces/ITheme<wbr>Interface"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_interfaces_itimezone_.html">"interfaces/ITime<wbr>Zone"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_interfaces_iuser_.html">"interfaces/IUser"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_registerserviceworker_.html">"register<wbr>Service<wbr>Worker"</a>
-					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/_services_cacheservice_.html">"services/<wbr>Cache<wbr>Service"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_services_userservice_.html">"services/<wbr>User<wbr>Service"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_themes_iconlibrary_.html">"themes/<wbr>Icon<wbr>Library"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_themes_styledcomponents_.html">"themes/<wbr>Styled<wbr>Components"</a>
 					</li>
 				</ul>
 			</nav>
@@ -322,14 +279,8 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_services_cacheservice_.cacheservice.html#cachekey" class="tsd-kind-icon">cache<wbr>Key</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_services_cacheservice_.cacheservice.html#items" class="tsd-kind-icon">items</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_services_cacheservice_.cacheservice.html#getitems" class="tsd-kind-icon">get<wbr>Items</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_services_cacheservice_.cacheservice.html#getorupdateitems" class="tsd-kind-icon">get<wbr>OrUpdate<wbr>Items</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_services_cacheservice_.cacheservice.html#setitems" class="tsd-kind-icon">set<wbr>Items</a>

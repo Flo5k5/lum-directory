@@ -8,23 +8,33 @@
  *
  *
  */
-
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+  faBirthdayCake,
   faCircleNotch,
+  faEnvelope,
+  faGlobeEurope,
   faMars,
-  faPlusSquare,
+  faMobile,
+  faPhone,
+  faSms,
   faTimes,
   faVenus,
   faVenusMars,
 } from '@fortawesome/free-solid-svg-icons';
 
 export default {
+  /** Initiates FontAwesome icons library. */
   init: (): void =>
     library.add(
+      faBirthdayCake,
       faCircleNotch,
+      faEnvelope,
+      faGlobeEurope,
       faMars,
-      faPlusSquare,
+      faMobile,
+      faPhone,
+      faSms,
       faTimes,
       faVenus,
       faVenusMars

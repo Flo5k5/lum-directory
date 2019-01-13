@@ -6,15 +6,16 @@ import UserInfosModal from './UserInfosModal';
 import UserListFilters from './UserListFilters';
 import UserListPagination from './UserListPagination';
 
+/** Number of users to display in the list of users */
 const USERS_PER_PAGE: number = 10;
-export type FILTER_GENDER = 'ALL' | 'MALE' | 'FEMALE';
-export type NAME_FILTER = 'FIRST_NAME' | 'LAST_NAME';
-// export enum EnumFilter {
-//   FILTER_GENDER,
-//   NAME_FILTER,
-//   string,
-// }
 
+/** Type that describes the filter used to choose gender of the users to display  */
+export type FILTER_GENDER = 'ALL' | 'MALE' | 'FEMALE';
+
+/** Type that describes the parameter used to filter the displayed users  */
+export type NAME_FILTER = 'FIRST_NAME' | 'LAST_NAME';
+
+/** Styled component  */
 const UserListFlex: any = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,6 +25,7 @@ const UserListFlex: any = styled.div`
   margin: 0 auto;
 `;
 
+/** Styled component that host the list of users. */
 const UserListResults: any = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -34,7 +36,7 @@ const UserListResults: any = styled.div`
 `;
 
 /**
- * Interface that represents the properties object passed to the UserList component.
+ * Represents the properties object passed to the UserList component.
  *
  * @interface IUserListProps
  */
@@ -43,7 +45,7 @@ interface IUserListProps {
 }
 
 /**
- * Interface that represents the state object of the UserList component.
+ * Represents the state object of the UserList component.
  *
  * @interface IUserListState
  */
@@ -59,14 +61,17 @@ interface IUserListState {
 }
 
 /**
- * UserList class is a React's component class used to render the users list results,
+ * UserList class is a React component class used to render the users list results,
  * filters (by name or by genre), and pagination.
  * This class use a state to store and route parameters to others sub components.
  *
  * @class UserList
  * @extends {React.Component<IUserListProps, IUserListState>}
  */
-class UserList extends React.Component<IUserListProps, IUserListState> {
+export default class UserList extends React.Component<
+  IUserListProps,
+  IUserListState
+> {
   /**
    * Creates an instance of UserList.
    * @param {IUserListProps} props
@@ -200,9 +205,9 @@ class UserList extends React.Component<IUserListProps, IUserListState> {
    * @memberof UserList
    */
   public openModal(userInfos: IUser): void {
-    // this.setState({
-    //   userInfosModal: userInfos,
-    // });
+    this.setState({
+      userInfosModal: userInfos,
+    });
   }
 
   /**
@@ -311,5 +316,3 @@ class UserList extends React.Component<IUserListProps, IUserListState> {
     ));
   }
 }
-
-export default UserList;
