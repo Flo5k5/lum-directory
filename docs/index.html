@@ -62,12 +62,16 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<p>This project was bootstrapped with <a href="https://github.com/facebookincubator/create-react-app">Create React App</a>.</p>
+				<h2 id="tldr-">TLDR;</h2>
+				<p>LumDirectory uses React, TypeScript, Styled Component (CSS in JS), Leaflet, FontAwesome icons, Prettier, TsLint, JSDoc / TypeDoc.
+					It&#39;s a responsive progressive web app using localStorage to cache network calls to randomuser.me API. It preloads all images, so service worker automatically caches them.
+					Responsive design is achieved using only flexbox.
+				An online version is available here: <a href="https://lumdirectory.firebaseapp.com/">https://lumdirectory.firebaseapp.com</a>.</p>
 				<h2 id="how-to-run-this-project">How to run this project</h2>
 				<ul>
-					<li>Download this project</li>
+					<li>Download or clone this project</li>
 					<li>Execute <code>npm install</code> or <code>yarn</code> to install the third party tools and libraries required to run this project</li>
-					<li>Execute <code>npm run start</code> or <code>yarn start</code> to runs the app in the development mode</li>
+					<li>Execute <code>npm run start</code> or <code>yarn start</code> to runs the app in development mode</li>
 					<li>Open <a href="http://localhost:3000">http://localhost:3000</a> in your browser</li>
 				</ul>
 				<h2 id="folder-structure">Folder Structure</h2>
@@ -108,8 +112,8 @@
 				<p>Run linting rules and indentation rules over all the project.
 				It will output errors if some rules are broken.</p>
 				<ul>
-					<li><code>npm run type-doc</code>
-					or <code>yarn type-doc</code></li>
+					<li><code>npm run typedoc</code>
+					or <code>yarn typedoc</code></li>
 				</ul>
 				<p>Generates a documentation in HTML format based on JSDoc comments found in the project&#39;s source using <code>Type-doc</code> package.
 				The generated documentation is located in the folder /docs.</p>
@@ -135,100 +139,27 @@
 					<li>noUnusedLocals</li>
 				</ul>
 				<p>For the indentation, this project use prettier and formatting rules located in the <code>.prettierrc</code> file at the root of the project.
-				It enforces rules about:</p>
-				<pre><code class="language-sh">npm install --save node-sass-chokidar</code></pre>
+				The current configuration use those rules:</p>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"printWidth"</span>: <span class="hljs-number">80</span>,
+  <span class="hljs-attr">"trailingComma"</span>: <span class="hljs-string">"es5"</span>,
+  <span class="hljs-attr">"useTabs"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"tabWidth"</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">"semi"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"singleQuote"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"jsxSingleQuote"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"bracketSpacing"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"jsxBracketSameLine"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"arrowParens"</span>: <span class="hljs-string">"always"</span>,
+  <span class="hljs-attr">"endOfLine"</span>: <span class="hljs-string">"auto"</span>
+}</code></pre>
 				<h2 id="progressive-web-app">Progressive Web App</h2>
-				<p>This project is a Progressive Web App. It can be installed
-					By default, the production build is a fully functional, offline-first
-				<a href="https://developers.google.com/web/progressive-web-apps/">Progressive Web App</a>.</p>
+				<p>This project is a Progressive Web App. It can be added to the home screen of your smartphone. You can launch it like a traditional application. It will be updated automatically by the service worker.</p>
 				<ul>
-					<li>All static site assets are cached so that the page loads fast on subsequent visits. Updates are downloaded in the background.
-					-</li>
+					<li>All static site assets are cached so that the page loads fast on subsequent visits. Updates are downloaded in the background.</li>
 					<li>This app will work regardless of network state, even if offline.</li>
 					<li>On mobile devices, this app can be added directly to the user&#39;s home screen.</li>
 				</ul>
-				<p>The <a href="https://github.com/goldhand/sw-precache-webpack-plugin"><code>sw-precache-webpack-plugin</code></a>
-					is integrated into production configuration,
-					and it will take care of generating a service worker file that will automatically
-					precache all of your local assets and keep them up to date as you deploy updates.
-					The service worker will use a <a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/#cache-falling-back-to-network">cache-first strategy</a>
-					for handling all requests for local assets, including the initial HTML, ensuring
-				that your web app is reliably fast, even on a slow or unreliable network.</p>
-				<h3 id="opting-out-of-caching">Opting Out of Caching</h3>
-				<p>If you would prefer not to enable service workers prior to your initial
-					production deployment, then remove the call to <code>serviceWorkerRegistration.register()</code>
-				from <a href="src/index.js"><code>src/index.js</code></a>.</p>
-				<p>If you had previously enabled service workers in your production deployment and
-					have decided that you would like to disable them for all your existing users,
-					you can swap out the call to <code>serviceWorkerRegistration.register()</code> in
-					<a href="src/index.js"><code>src/index.js</code></a> with a call to <code>serviceWorkerRegistration.unregister()</code>.
-					After the user visits a page that has <code>serviceWorkerRegistration.unregister()</code>,
-					the service worker will be uninstalled. Note that depending on how <code>/service-worker.js</code> is served,
-				it may take up to 24 hours for the cache to be invalidated.</p>
-				<h3 id="offline-first-considerations">Offline-First Considerations</h3>
-				<ol>
-					<li><p>Service workers <a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers#you_need_https">require HTTPS</a>,
-							although to facilitate local testing, that policy
-							<a href="http://stackoverflow.com/questions/34160509/options-for-testing-service-workers-via-http/34161385#34161385">does not apply to <code>localhost</code></a>.
-							If your production web server does not support HTTPS, then the service worker
-						registration will fail, but the rest of your web app will remain functional.</p>
-					</li>
-					<li><p>Service workers are <a href="https://jakearchibald.github.io/isserviceworkerready/">not currently supported</a>
-							in all web browsers. Service worker registration <a href="src/registerServiceWorker.js">won&#39;t be attempted</a>
-						on browsers that lack support.</p>
-					</li>
-					<li><p>The service worker is only enabled in the <a href="#deployment">production environment</a>,
-							e.g. the output of <code>npm run build</code>. It&#39;s recommended that you do not enable an
-							offline-first service worker in a development environment, as it can lead to
-							frustration when previously cached assets are used and do not include the latest
-						changes you&#39;ve made locally.</p>
-					</li>
-					<li><p>If you <em>need</em> to test your offline-first service worker locally, build
-							the application (using <code>npm run build</code>) and run a simple http server from your
-							build directory. After running the build script, <code>create-react-app</code> will give
-							instructions for one way to test your production build locally and the <a href="#deployment">deployment instructions</a> have
-							instructions for using other methods. <em>Be sure to always use an
-						incognito window to avoid complications with your browser cache.</em></p>
-					</li>
-					<li><p>If possible, configure your production environment to serve the generated
-							<code>service-worker.js</code> <a href="http://stackoverflow.com/questions/38843970/service-worker-javascript-update-frequency-every-24-hours">with HTTP caching disabled</a>.
-							If that&#39;s not possible—<a href="#github-pages">GitHub Pages</a>, for instance, does not
-							allow you to change the default 10 minute HTTP cache lifetime—then be aware
-							that if you visit your production site, and then revisit again before
-							<code>service-worker.js</code> has expired from your HTTP cache, you&#39;ll continue to get
-							the previously cached assets from the service worker. If you have an immediate
-							need to view your updated production deployment, performing a shift-refresh
-							will temporarily disable the service worker and retrieve all assets from the
-						network.</p>
-					</li>
-					<li><p>Users aren&#39;t always familiar with offline-first web apps. It can be useful to
-							<a href="https://developers.google.com/web/fundamentals/instant-and-offline/offline-ux#inform_the_user_when_the_app_is_ready_for_offline_consumption">let the user know</a>
-							when the service worker has finished populating your caches (showing a &quot;This web
-							app works offline!&quot; message) and also let them know when the service worker has
-							fetched the latest updates that will be available the next time they load the
-							page (showing a &quot;New content is available; please refresh.&quot; message). Showing
-							this messages is currently left as an exercise to the developer, but as a
-							starting point, you can make use of the logic included in <a href="src/registerServiceWorker.js"><code>src/registerServiceWorker.js</code></a>, which
-							demonstrates which service worker lifecycle events to listen for to detect each
-							scenario, and which as a default, just logs appropriate messages to the
-						JavaScript console.</p>
-					</li>
-					<li><p>By default, the generated service worker file will not intercept or cache any
-							cross-origin traffic, like HTTP <a href="#integrating-with-an-api-backend">API requests</a>,
-							images, or embeds loaded from a different domain. If you would like to use a
-							runtime caching strategy for those requests, you can <a href="#npm-run-eject"><code>eject</code></a>
-							and then configure the
-							<a href="https://github.com/GoogleChrome/sw-precache#runtimecaching-arrayobject"><code>runtimeCaching</code></a>
-							option in the <code>SWPrecacheWebpackPlugin</code> section of
-						<a href="../config/webpack.config.prod.js"><code>webpack.config.prod.js</code></a>.</p>
-					</li>
-				</ol>
-				<h3 id="progressive-web-app-metadata">Progressive Web App Metadata</h3>
-				<p>The default configuration includes a web app manifest located at
-				<a href="public/manifest.json"><code>public/manifest.json</code></a>.</p>
-				<p>When a user adds a web app to their homescreen using Chrome or Firefox on
-					Android, the metadata in <a href="public/manifest.json"><code>manifest.json</code></a> determines what
-				icons, names, and branding colors to use when the web app is displayed.</p>
 				<h2 id="deployment">Deployment</h2>
 				<p><code>npm run build</code> creates a <code>build</code> directory with a production build of your app.</p>
 			</div>
