@@ -72,6 +72,10 @@ export default class UsersDirectory extends React.Component<
           isLoading: false,
           users: [...users],
         });
+
+        this.preloadImages(
+          new Set(users.map((user: IUser) => user.largePicture))
+        );
       })
       .catch(() => {
         this.setState({
@@ -102,5 +106,21 @@ export default class UsersDirectory extends React.Component<
         <Span show={!!this.state.isInError}>Something is broken!</Span>
       </UserListContainer>
     );
+  }
+
+  /**
+   * Preload an array of image urls.
+   *
+   * @private
+   * @param {Set<string>} imageUrls
+   * @memberof UsersDirectory
+   */
+  private preloadImages(imageUrls: Set<string>): void {
+    {
+      imageUrls.forEach((pictureUrl: string) => {
+        const img: HTMLImageElement = new Image();
+        img.src = pictureUrl;
+      });
+    }
   }
 }

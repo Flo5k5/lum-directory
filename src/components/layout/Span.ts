@@ -2,6 +2,11 @@ import { COLOR } from 'src/interfaces/ColorType';
 import { FONT_SIZE } from 'src/interfaces/FontSizeType';
 import styled from 'src/themes/StyledComponents';
 
+/**
+ * Represents the properties object of the Span component.
+ *
+ * @interface ISpanProps
+ */
 interface ISpanProps {
   bold: boolean;
   color: COLOR;

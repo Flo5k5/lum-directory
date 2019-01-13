@@ -89,7 +89,7 @@ export default class UserListPagination extends React.Component<
    * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
    * @memberof UserListPagination
    */
-  public clickChangeCurrentPage(
+  private clickChangeCurrentPage(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void {
     this.props.changeCurrentPage(+event.currentTarget.value);

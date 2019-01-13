@@ -134,7 +134,7 @@ export default class UserList extends React.Component<
    * @param {number} newPage - The number of the page to go to.
    * @memberof UserList
    */
-  public changeCurrentPage(newPage: number): void {
+  private changeCurrentPage(newPage: number): void {
     if (newPage > this.state.maxPage) {
       newPage = this.state.maxPage;
     }
@@ -160,7 +160,7 @@ export default class UserList extends React.Component<
    * @param {NAME_FILTER} [nameFilterParameter]
    * @memberof UserList
    */
-  public applyFilters(
+  private applyFilters(
     genderFilterParameter?: FILTER_GENDER,
     textFilterParameter?: string,
     nameFilterParameter?: NAME_FILTER
@@ -204,7 +204,7 @@ export default class UserList extends React.Component<
    * @param {IUser} userInfos - User infos displayed in the modal
    * @memberof UserList
    */
-  public openModal(userInfos: IUser): void {
+  private openModal(userInfos: IUser): void {
     this.setState({
       userInfosModal: userInfos,
     });
@@ -215,7 +215,7 @@ export default class UserList extends React.Component<
    *
    * @memberof UserList
    */
-  public closeModal(): void {
+  private closeModal(): void {
     this.setState({
       userInfosModal: undefined,
     });

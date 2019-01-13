@@ -58,51 +58,6 @@ export default class UserListFilters extends React.Component<
   }
 
   /**
-   * Handles changes on the name filter input.
-   *
-   * @param {React.ChangeEvent<HTMLInputElement>} event
-   * @memberof UserListFilters
-   */
-  public onChangeNameFilterInput(
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void {
-    this.props.handleFilter(
-      undefined,
-      event.target.value,
-      this.props.nameFilter
-    );
-  }
-
-  /**
-   * Handles clicks on the name buttons to change the filter.
-   *
-   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
-   * @memberof UserListFilters
-   */
-  public onClickNameButtons(
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ): void {
-    this.props.handleFilter(undefined, this.props.textFilter, event
-      .currentTarget.value as NAME_FILTER);
-  }
-
-  /**
-   * Handles clicks on the 'gender' buttons to filter by gender.
-   *
-   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
-   * @memberof UserListFilters
-   */
-  public onClickGenderButtons(
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ): void {
-    this.props.handleFilter(
-      event.currentTarget.value as FILTER_GENDER,
-      undefined,
-      undefined
-    );
-  }
-
-  /**
    * Renders the users list filters (by name or by genre).
    *
    * @returns {React.ReactNode}
@@ -158,6 +113,51 @@ export default class UserListFilters extends React.Component<
           </Button>
         </GroupButton>
       </WrapperDiv>
+    );
+  }
+
+  /**
+   * Handles changes on the name filter input.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} event
+   * @memberof UserListFilters
+   */
+  private onChangeNameFilterInput(
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void {
+    this.props.handleFilter(
+      undefined,
+      event.target.value,
+      this.props.nameFilter
+    );
+  }
+
+  /**
+   * Handles clicks on the name buttons to change the filter.
+   *
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
+   * @memberof UserListFilters
+   */
+  private onClickNameButtons(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void {
+    this.props.handleFilter(undefined, this.props.textFilter, event
+      .currentTarget.value as NAME_FILTER);
+  }
+
+  /**
+   * Handles clicks on the 'gender' buttons to filter by gender.
+   *
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
+   * @memberof UserListFilters
+   */
+  private onClickGenderButtons(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void {
+    this.props.handleFilter(
+      event.currentTarget.value as FILTER_GENDER,
+      undefined,
+      undefined
     );
   }
 }

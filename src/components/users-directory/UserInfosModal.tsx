@@ -243,7 +243,9 @@ export default class UserInfosModal extends React.Component<
    * @param {React.MouseEvent<HTMLDivElement, MouseEvent>} event
    * @memberof UserInfosModal
    */
-  public closeModal(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void {
+  private closeModal(
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ): void {
     this.props.closeModal();
   }
 }

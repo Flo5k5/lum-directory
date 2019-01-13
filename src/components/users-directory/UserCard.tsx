@@ -121,7 +121,7 @@ export default class UserCard extends React.Component<
    * Handle the click action on a user card and call parent component's function
    * to open a modal showing all infos of the selected user.
    */
-  public onCardClick(): void {
+  private onCardClick(): void {
     this.props.clickHandler(this.state.currentUser);
   }
 }
