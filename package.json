@@ -18,7 +18,7 @@
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
-    "type-doc": "npx typedoc --out docs/ src/ --target 'ES6'"
+    "typedoc": "npx typedoc --excludeExternals --tsconfig tsconfig.prod.json --ignoreCompilerErrors --out docs/ src/"
   },
   "devDependencies": {
     "@types/jest": "^23.3.11",
