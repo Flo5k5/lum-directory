@@ -70,8 +70,9 @@ const ModalLeft: any = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 350px;
+  min-width: 250px;
   overflow: hidden;
+  box-sizing: border-box;
 `;
 
 /** Styled component that handles the position of the right part of the modal. */
@@ -80,8 +81,9 @@ const ModalRight: any = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-width: 350px;
+  min-width: 250px;
   overflow: hidden;
+  box-sizing: border-box;
 `;
 
 /** Styled component that handles the position of the close button of the modal. */
