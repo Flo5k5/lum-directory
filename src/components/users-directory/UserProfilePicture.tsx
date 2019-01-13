@@ -13,7 +13,6 @@ const UserImageContainer: any = styled.div`
 
 /** Styled component that displays and styles users's profile picture. */
 const UserImage: any = styled.img`
-  // max-width: 100px;
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.2) 0 0px 20px 0px;
 `;
